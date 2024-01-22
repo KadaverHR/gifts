@@ -1,38 +1,34 @@
 *
   box-sizing: border-box
 
-$OS: 'OpenSans', sans-serif
-$Or: 'OrelegaOne', sans-serif
-$Ph: 'Philosopher', sans-serif
-$Pt: 'PTSans', sans-serif
-$TNR: 'TimesNewRoman', sans-serif
-$anim: 0.3s ease-in-out
-$anim2: 0.25s ease-in-out
-
 .container
-  display: grid
-  max-width: 920px
-  padding-left: 15px
-  padding-right: 15px
+  max-width: 1704px
+  padding-left: 100px
+  padding-right: 100px
   margin: 0 auto
   min-width: 320px
-  @media all and ($xs)
-    max-width: 616px
+  @media all and ($xl)
+    max-width: 1194px
+    padding-left: 75px
+    padding-right: 75px
+  @media all and ($l)
+    max-width: 1128px
+    padding-left: 36px
+    padding-right: 36px
+  @media all and ($m)
+    max-width: 920px
     padding-left: 20px
     padding-right: 20px
-.container-flex
-  flex-direction: column
-  max-width: 920px
-  padding-left: 15px
-  padding-right: 15px
-  margin: 0 auto
-  min-width: 320px
-  @media all and ($xs)
-    max-width: 616px
-    padding-left: 20px
-    padding-right: 20px
+  @media all and ($s)
+    max-width: 328px
+    padding-left: 16px
+    padding-right: 16px
+  &.grid
+    display: grid
+
 body
-  line-height: 1.3
+  font-family: $Int
+  line-height: normal
   margin: 0
   min-height: 100vh
   position: relative
@@ -54,6 +50,9 @@ h1, h2
   margin-block-start: 0
   margin-block-end: 0
 
+a 
+  text-decoration: none
+
 button
   padding-block: 0
   padding-inline: 0
@@ -64,19 +63,11 @@ button
 img
   max-width: 100%
 
- 
 .title
-  color: #9B2828
-  font-family: $Ph
-  font-size: 30px
-  font-weight: 700
-  line-height: 30px
-  letter-spacing: -0.9px
-  text-transform: uppercase
-  @media all and ($mobile)
-    font-size: 26px
-    width: 80%
-  @media all and ($xs)
-    font-size: 21px
-    
+  color: $gray-darken-3
+  font-family: $Int
+  font-size: 48px
+  font-weight: 500
   
+section
+  margin-bottom: 112px

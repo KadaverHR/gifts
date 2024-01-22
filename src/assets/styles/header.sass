@@ -1,150 +1,26 @@
 .header
-  position: fixed
-  z-index: 99
-  position: fixed
-  top: 0
-  width: 100%
-
+  padding: 24px 0
   &__box
-    padding-top: 20px
-    padding-bottom: 15px
     display: grid
-    grid-auto-flow: column
-    align-items: end
-    @media all and ($xs)
-      padding-bottom: 0
+    gap: 72px
+    align-items: center
+    grid-template-columns: auto 1fr auto
+  &__logo
+    display: grid
+    justify-self: start
   &__nav
     display: grid
     grid-auto-flow: column
-    gap: 68px
-    justify-items: center
-    justify-content: end
-    @media all and ($mobile)
-      gap: 20px
-    @media all and ($xs)
-      display: none
-  &__nav-link
+    gap: 40px
+    justify-content: space-between
+    justify-self: end
+  &__btn
+    border-radius: 4px
+    padding: 16px 32px
+    background: $green
     display: grid
-    gap: 8px
-    justify-items: center
-    cursor: pointer
-    text-decoration: none
-    svg path
-    transition: fill $anim
-    &:hover, &:active, &:focus
-      svg path
-      fill: #B6BC94
-  &__img-wrapper
-    img
-      width: 180px
-  &__nav-title
-    color: #5E6B67
-    text-align: center
-    font-family: $OS
-    font-size: 11px
-    font-weight: 400
-
-.burger
-  display: none
-.header__nav-mobile
-  display: none
-
-/////////
-
-@media all and ($xs)
-
-  .header
-    &__img-wrapper
-      position: relative
-      z-index: 99
-    &__nav-mobile
-      display: flex
-      cursor: pointer
-
-    &__list-mobile
-      position: fixed
-      display: flex
-      flex-direction: column
-      left: 0
-      top: 0
-      width: 100%
-      height: 100vh
-      z-index: 2
-      padding-left: 50px
-      padding-top: 170px
-      box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.1)
-      background-color: #fff
-      position: absolute
-      display: flex
-      flex-direction: column
-      gap: 60px
-      overflow-y: auto
-      visibility: hidden
-      transform: translateX(120%)
-      transition: visibility 0.3s ease-in-out, transform 0.3s ease-in-out
-      &--active
-        visibility: visible
-        transform: none
-      & .header__item .header__link
-        font-size: 24px
-        line-height: 29px
-
-  .burger--active
-    z-index: 3
-    padding-left: 50px
-    & .burger__line:first-child
-      left: 25%
-      top: 50%
-      transform: rotate(45deg)
-      transform-origin: center
-      transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, left 0.3s ease-in-out
-    & .burger__line:last-child
-      left: 25%
-      top: 50%
-      transform: rotate(-45deg)
-      transform-origin: center
-      transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, left 0.3s ease-in-out
-    & .burger__line:nth-child(2)
-      opacity: 0
-
-  .stop-scroll
-    overflow: hidden
-
-  .header__list
-    display: none
-
-  .burger
-    display: block
-    position: relative
-    width: 30px
-    height: 40px
-    background-color: transparent
-    border: none
-    cursor: pointer
-    &__line
-      position: absolute
-      left: 50%
-      transform: translateX(-50%)
-      width: 30px
-      height: 3px
-      background-color: #9B2828
-    &__line:first-child
-      top: 7px
-    &__line:last-child
-      bottom: 7px
-    &__line:nth-child(2)
-      top: 50%
-      transform: translate(-50%, -50%)
-
-///////////
-.linear-gradient
-  &__top
-    bottom: 0
-    position: relative
-    z-index: 2
-    height: 60px
-    width: 100%
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.00) 16.67%, #FFF 82.2%)
-    @media all and ($mobile)
-      height: 30px
-
+    justify-self: end
+  &__link
+    color: #fff
+    font-size: 14px
+    font-weight: 500

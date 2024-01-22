@@ -5,6 +5,81 @@
 
 {% block content %}
 
-{% include "html/includes/header.html" %}
+<section class="banner">
+
+	{% include "html/includes/header.html" %}
+
+	<div class="container">
+		<div class="banner__box">
+			<h3 class="banner__subtitle">
+				ЯРМАРКА «ОТ АБХАЗИИ ДО КАМЧАТКИ»
+			</h3>
+			<h1 class="banner__title">
+				Натуральная фермерская продукция по всей стране
+			</h1>
+			<p class="banner__text">
+				Экологически чистая продукция, приготовленная по старинным семейным рецептурам. Возможность приобрести
+				натуральные
+				продукты, изготовленные небольшими семейными хозяйствами напрямую от производителей.
+			</p>
+		</div>
+	</div>
+</section>
+
+<section class="about">
+	<div class="container">
+		<div class="about__box">
+			<div class="about__block about__block--1">
+				<h2 class="title">
+					Подход
+				</h2>
+
+				<p class="about__desc">
+					<span>Поставки формируются из свежайших продуктов, которые едут напрямую в город проведения мероприятия. Таким
+						образом, покупатели могут попробовать и приобрести те деликатесы,некоторые не представлены в их регионах
+						проживания.</span>
+					<span>Задача производителей, сохранить пользу в каждом продукте и подарить
+						покупателям
+						необыкновенный натуральный вкус,некоторый многие помнят ещё с детства.</span>
+				</p>
+
+				<div class="about__icon">
+					<img src="assets/img/m1.svg">
+				</div>
+			</div>
+			<div class="about__block about__block--2">
+				<h2 class="title">
+					Миссия
+				</h2>
+				<p class="about__desc">
+					<span>
+						Мы предлагаем человеку свежайший товар, даже с коротким сроком хранения. Сети и рынки не имеют такой
+						возможности, а значит люди могут приобрести продукты, которые не продаются у них в регионе.
+					</span>
+					<span>В составе
+						продукции отсутствуют добавки и консерванты. Продукты, представленные на ярмарке исключительно экологически
+						чистого происхождения.</span>
+				</p>
+				<div class="about__icon">
+					<img src="assets/img/m2.svg">
+				</div>
+			</div>
+			<div class="about__block about__block--3">
+				<h2 class="title">
+					История
+				</h2>
+				<p class="about__desc">
+					<span>
+						Более 6-ти лет ярмарки постоянно проходят в более чем 30 городах России. </span>
+					<span> Десятки тысяч покупателей
+						уже знают этот бренд и возвращаются снова и снова.</span>
+				</p>
+				<div class="about__icon">
+					<img src="assets/img/m3.svg">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 {% endblock %}
