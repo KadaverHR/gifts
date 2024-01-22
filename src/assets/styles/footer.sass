@@ -1,0 +1,93 @@
+.footer
+  z-index: 99
+  position: fixed
+  bottom: 0
+  width: 100%
+
+  &__box
+    position: relative
+    z-index: 3
+    background-color: #9B2828
+    border-radius: 10px
+    background-image: url(../../assets/img/footer.svg)
+    height: 52px
+    width: 100%
+    @media all and ($xs)
+      border-radius: 0
+  &__nav
+    height: 100%
+    display: grid
+    grid-template-columns: 1fr auto 1fr
+    grid-auto-flow: column
+    justify-content: space-around
+    gap: 10px
+    align-items: center
+    justify-items: center
+    padding-left: 20px
+    padding-right: 20px
+    @media all and ($xs)
+      grid-template-columns: 1fr 0.8fr 1fr
+      padding-left: 10px
+      padding-right: 10px
+  &__nav-item
+    &.center
+      position: relative
+      padding-left: 30px
+      padding-right: 30px
+      @media all and ($xs)
+        padding-left: 15px
+        padding-right: 15px
+      &::before
+        content: ""
+        position: absolute
+        width: 100%
+        height: 62px
+        background: #D8DCBF
+        top: 50%
+        left: 50%
+        transform: translate(-50%,-50%)
+        border-radius: 5px
+      .footer__link
+        position: relative
+        color: #6F0E0E
+        z-index: 4
+  &__link
+    color: #FFF
+    text-align: center
+    font-family: $Pt
+    font-size: 14px
+    font-weight: 700
+    line-height: 16px
+    letter-spacing: -0.42px
+    text-transform: uppercase
+    text-decoration: none
+    display: flex
+    @media all and ($xs)
+      font-size: 10px
+      line-height: 10px
+      font-weight: 400
+  &__bottom
+    padding-left: 40px
+    padding-top: 25px
+    padding-bottom: 25px
+    background: #FFFCEE
+    @media all and ($xs)
+      padding-left: 20px
+  &__bottom-text
+    color: rgba(103, 111, 115, 0.80)
+    font-family: $Pt
+    font-size: 11px
+    font-weight: 400
+    line-height: 120%
+  .container-flex
+    @media all and ($xs)
+      padding-left: 0
+      padding-right: 0
+.linear-gradient
+  &__bottom
+    bottom: -5px
+    position: relative
+    z-index: 2
+    height: 65px
+    width: 100%
+    background: linear-gradient(180deg, rgba(255, 252, 238, 0.00) 16.67%, #FFFCEE 82.2%)

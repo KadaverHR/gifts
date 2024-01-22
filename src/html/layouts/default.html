@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ meta_description }}">
+  <!--    <script src="bootstrap/dist/js/bootstrap"></script>-->
+
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.min.css">
+
+  <script defer src="assets/libs/jquery.js"></script>
+  <script defer src="assets/libs/jquery-ui.js"></script>
+  <script defer src="assets/libs/jquery-ui-touch.js"></script>
+  <script defer src="assets/libs/aos.js"></script>
+  <script defer src="assets/libs/swiper.js"></script>
+  <script defer src="assets/libs/slick.min.js"></script>
+  <script defer src="assets/js/app.js"></script>
+
+
+</head>
+
+<body {% if bodyClass %}class="{{ bodyClass }}" {% endif %} id="body">
+
+  <!-- {% include "html/includes/header.html" %} -->
+
+
+
+  {% block content %}{% endblock %}
+
+  {% include "html/includes/footer.html" %}
+
+
+  <!--<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>-->
+
+ 
+
+  <!-- <script>
+    AOS.init()
+  </script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"
+    integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous">
+    </script> -->
+
+<!-- 
+  <script>
+
+    window.addEventListener('scroll', function () {
+
+      SmoothScroll({
+        // Время скролла 400 = 0.4 секунды
+        animationTime: 800,
+        // Размер шага в пикселях
+        stepSize: 75,
+
+        // Дополнительные настройки:
+
+        // Ускорение
+        accelerationDelta: 30,
+        // Максимальное ускорение
+        accelerationMax: 2,
+
+        // Поддержка клавиатуры
+        keyboardSupport: true,
+        // Шаг скролла стрелками на клавиатуре в пикселях
+        arrowScroll: 50,
+
+        // Pulse (less tweakable)
+        // ratio of "tail" to "acceleration"
+        pulseAlgorithm: true,
+        pulseScale: 4,
+        pulseNormalize: 1,
+
+        // Поддержка тачпада
+        touchpadSupport: true,
+      })
+    })
+
+  </script> -->
+
+
+
+</body>
+
+</html>
