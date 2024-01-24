@@ -20,6 +20,9 @@
             ],
             "font": [
                 "/assets/fonts/**/*.*"
+            ],
+            "video": [
+                "/assets/video/*.*"
             ]
         },
         "dist": {
@@ -29,7 +32,8 @@
             "script": "/assets/js/",
             "libs": "/assets/libs/",
             "image": "/assets/img/",
-            "font": "/assets/fonts/"
+            "font": "/assets/fonts/",
+            "video": "/assets/video/"
         }
     }
 }

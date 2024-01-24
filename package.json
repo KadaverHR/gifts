@@ -7,7 +7,7 @@
     "dev": "gulp",
     "prod": "gulp --prod"
   },
-  "author": "Nikita Kovtun",
+  "author": "Kadaver",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -16,6 +16,7 @@
     "browser-sync": "^2.27.4",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
     "gulp-fonter": "^0.3.0",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^7.1.0",

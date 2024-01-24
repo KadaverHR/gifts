@@ -1,76 +1,275 @@
-.about
+
+.calendar
+  &__box
+    margin-top: 32px
+    display: grid
+    grid-template-columns: repeat(4, minmax(218px, 408px))
+    gap: 32px 24px
+  &__item
+    display: grid
+    gap: 24px
+    justify-content: start
+    justify-items: start
+    &:nth-of-type(2n) .calendar__date-box
+      background: $gray-lighten-2
+      .calendar__date
+        color: $gray-darken-2
+        font-size: 16px
+        & svg path
+          fill: $gray-darken-2
+  &__title-date
+    display: grid
+    gap: 16px
+  &__img
+    border-radius: 8px
+    max-height: 229px
+  &__date-box
+    padding: 8px 16px
+    border-radius: 4px
+
+    background: $green
+  &__date
+    display: grid
+    grid-auto-flow: column
+    gap: 8px
+    color: #fff
+    font-size: 16px
+    font-weight: 500
+    line-height: 130%
+    position: relative
+    align-items: center
+    svg
+      width: 24px
+      height: 24px
+  &__desc-box
+    display: grid
+    gap: 8px
+  &__item-title
+    color: $gray-darken-3
+    font-size: 24px
+    font-weight: 500
+    line-height: 130%
+  &__desc-label
+    color: $gray-darken-3
+    font-size: 16px
+    font-weight: 500
+    line-height: 130%
+  &__desc
+    color: $gray-text
+    text-overflow: ellipsis
+    font-size: 16px
+    font-weight: 400
+    line-height: 130%
+
+.request
+  .title
+    color: #fff
   &__box
     display: grid
-    grid-template-areas: "one one one one one one" " . two two two two two" " . . three three three three"
-    grid-template-columns: repeat(6, 1fr)
-  &__icon
-    margin-top: -30px
-    margin-right: -15px
-  &__block
+    grid-auto-flow: column
+    gap: 8px
+    grid-template-columns: minmax(856px, 1128px) minmax(264px, 568px)
+  &__btn-box
     padding: 56px 40px
-    display: grid
-    grid-template-columns: repeat(24, 1fr)
-    gap: 24px
     border-radius: 24px
-    background: $gray-lighten-1
+    background: $green
+    display: grid
+    gap: 40px
+    justify-items: start
     position: relative
-    margin-bottom: -25px
     &::before
       content: ""
+      background: url(../../assets/img/request-icon.svg)
       background-repeat: no-repeat
-      left: 0
+      background-size: cover
+      width: 32px
+      height: 32px
+      right: 24px
       position: absolute
-      background-position: bottom left
-      bottom: 0
-      opacity: 0.1
-    &--1
-      grid-area: one
-      &::before
-        background-image: url(../../assets/img/b1.svg)
-        width: 320px
-        height: 320px
-      .title
-        grid-column: 1/9
-      .about__desc
-        grid-column: 12/23
-      .about__icon
-        grid-column: 24/25
-    &--3
-      grid-area: three
-      grid-template-columns: repeat(16,1fr)
-      &::before
-        background-image: url(../../assets/img/b3.svg)
-        width: 242px
-        height: 242px
-      .title
-        grid-column: 1/7
-      .about__desc
-        grid-column: 9/16
-      .about__icon
-        grid-column: 16/17
-    &--2
-      grid-area: two
-      background: $green
-      grid-template-columns: repeat(20, 1fr )
-      .title
-        color: #fff
-        grid-column: 1/10
-      .about__desc
-        color: $gray-lighten-1
-        grid-column: 11/19
-      .about__icon
-        grid-column: 20/21
-      &::before
-        background-image: url(../../assets/img/b2.svg)
-        width: 321px
-        height: 349px
+      top: 24px
+  &__img
+    border-radius: 24px
+    max-height: 342px
+    width: 100%
+    object-fit: cover
+  &__btn
+    padding: 23px 55px
+    border-radius: 4px
+    background: #fff
+    border: 1px solid #fff
+    color: $gray-darken-3
+    font-size: 20px
+    font-weight: 500
+    line-height: 130%
+    transition: border $anim, color $anim
+    &:active, &:focus, &:hover
+      border: 1px solid $green
+      color: $green
+
+.catalog
+  &__box
+    margin-top: 32px
+    display: grid
+    gap: 24px
+    grid-template-columns: repeat(4, 1fr)
+  &__item
+    border-radius: 8px
+    padding: 32px 24px
+    height: 408px
+    position: relative
+    overflow: hidden
+    &:active, &:focus, &:hover
+      .catalog__background
+        width: 372px
+        height: 372px
+        right: -153px
+        bottom: -143px
+  &__background
+    position: absolute
+    background-repeat: no-repeat
+    background-size: cover
+    right: -143px
+    bottom: -132px
+    width: 362px
+    height: 362px
+    background-position: top left
+    transition: width $anim, height $anim, right $anim, bottom $anim
+    overflow: hidden
+  &__content
+    display: grid
+    gap: 16px
+  &__title
+    color: $gray-darken-3
+    font-size: 20px
+    font-weight: 500
+    line-height: 130%
   &__desc
-    color: $gray-darken-1
+    color: $gray-text
+    overflow: hidden
+    font-size: 14px
+    font-weight: 400
+    line-height: 130%
+    height: 36px
+    white-space: nowrap
+    text-overflow: ellipsis
+  &__desc
+    white-space: normal
+    display: -webkit-box
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+
+.info
+  &__box
+    display: grid
+    padding: 40px
+    grid-auto-flow: column
+    height: 632px
+    border-radius: 24px
+    background: url(../../assets/img/info.jpg)
+    background-position: center
+    align-items: end
+    justify-content: space-between
+    gap: 60px
+  .title
+    color: #FFF
+    font-size: 72px
+    font-weight: 500
+    line-height: normal
+  &__text
+    width: 584px
+    justify-self: end
+    color: #FFF
     font-size: 20px
     font-weight: 400
     line-height: 130%
-    & span
+
+.reviews
+  &__video
+    max-width: 264px
+    height: 383px
+    border-radius: 8px
+  &__video-box
+    max-width: 264px
+    height: 383px
+    border-radius: 8px
+    overflow: hidden
+    position: relative
+  &__video-desc-box
+    position: absolute
+    bottom: 16px
+    left: 16px
+    z-index: 99
+    display: grid
+    gap: 4px
+  &__video-title
+    color: #FFF
+    font-size: 14px
+    font-weight: 500
+    line-height: 130%
+  &__video-city
+    color: $gray-lighten-4
+    font-size: 12px
+    font-weight: 400
+    line-height: 130%
+  .title
+    padding-bottom: 32px
+  .swiper-slide
+    width: 264px !important
+
+.map
+  margin-top: 32px
+  width: 100%
+  height: 674px
+
+.form-block
+  &__box
+    display: grid
+    grid-auto-flow: column
+    gap: 8px
+    grid-template-columns: minmax(856px, 1128px) minmax(264px, 568px)
+  &__img
+    max-height: 922px
+    width: 100%
+    object-fit: cover
+    border-radius: 8px
+
+.form
+
+  &__box
+    padding: 56px
+    border-radius: 8px
+    background: $green
+    display: grid
+    justify-items: start
+    align-items: start
+    .title
+      color: #fff
+  &__box-title
+    display: grid
+    gap: 24px
+  &__box-subtitle
+    color: $gray-lighten-1
+    font-size: 20px
+    font-weight: 400
+    line-height: 130%
+  &__sale-box
+    padding: 8px 12px
+    border-radius: 36px
+    background: #fff
+  &__sale
+    color: $gray-darken-3
+    font-size: 16px
+    font-weight: 400
+    line-height: 130%
+    position: relative
+    display: grid
+    grid-auto-flow: column
+    align-items: center
+    gap: 8px
+    &::before
+      content: ""
       display: block
-      padding-bottom: 20px
-      &:last-of-type
-        padding-bottom: 0
+      width: 6px
+      height: 6px
+      background: $green
+      border-radius: 50%
