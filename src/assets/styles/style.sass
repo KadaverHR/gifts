@@ -80,7 +80,7 @@ section
 .about
   &__box
     display: grid
-    grid-template-areas: "one one one one one one" " . two two two two two" " . . three three three three"
+    grid-template-areas: "one one one one one one" " .two two two two two" " ..three three three three"
     grid-template-columns: repeat(6, 1fr)
     padding-bottom: 25px
   &__icon
@@ -154,3 +154,46 @@ section
       padding-bottom: 20px
       &:last-of-type
         padding-bottom: 0
+
+.input_block
+  margin: 0 0 25px 0
+  width: 344px
+  height: 66px
+  position: relative
+  & input
+    display: block
+    padding: 0
+    width: 344px
+    height: 64px
+    border: none
+    border-bottom: 2px solid #000
+    background: none
+    font-family: "ProximaNovaBold"
+    font-size: 24px
+    color: #000
+    outline: none
+  & label
+    display: block
+    width: 344px
+    height: 64px
+    position: absolute
+    top: 0
+    left: 0
+  & label span
+    display: block
+    height: 24px
+    -webkit-transition: all 0.3s ease
+    -moz-transition: all 0.3s ease
+    -o-transition: all 0.3s ease
+    -ms-transition: all 0.3s ease
+    transition: all 0.3s ease
+    font-family: "ProximaNovaBold"
+    font-size: 24px
+    line-height: 24px
+    color: #000
+    position: absolute
+    top: 21px
+    left: 0
+  & input:focus + label span
+    font-size: 14px
+    top: -10px

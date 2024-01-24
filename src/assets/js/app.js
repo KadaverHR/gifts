@@ -210,4 +210,62 @@ $(document).ready(function () {
     myMap.geoObjects.add(myPlacemark1);
     myMap.geoObjects.add(myPlacemark2);
   }
+
+
+  ///select
+
+  class Select {
+    constructor(el, placeholder) {
+      this.el = el;
+      this.placeholder = placeholder;
+    }
+    init() {
+      $(this.el)
+        .select2({
+          theme: "select-filter__theme",
+          dropdownCssClass: "select-filter__drop",
+          selectionCssClass: "select-filter__selection",
+          allowClear: false,
+          closeOnSelect: true,
+          dropdownAutoWidth: false,
+          placeholder: this.placeholder,
+          language: {
+            noResults: function (params) {
+              return "Нет результатов";
+            },
+          },
+        })
+        .on("select2:open", function (e) {
+          $(".select2-search__field").attr("placeholder", "Поиск");
+        });
+    }
+  }
+  // let select = new Select();
+
+  // let popoverTriggerList = [].slice.call(
+  //   document.querySelectorAll('[data-bs-toggle="popover"]')
+  // );
+
+  // popoverTriggerList.map(function (popoverTriggerEl) {
+  //   return new bootstrap.Popover(popoverTriggerEl);
+  // });
+
+ 
+
+
+  const selectCity = new Select($(".city"), "Город");
+  const selectAdvice = new Select($(".advice"), "Как вы узнали о ярмарке");
+
+  selectCity.init();
+  selectAdvice.init();
+
+
+
+
+
+
+
+
+
+
 })
