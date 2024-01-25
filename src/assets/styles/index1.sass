@@ -232,4 +232,38 @@
     width: 100%
     object-fit: cover
     border-radius: 8px
-
+  &__contact-block
+    display: grid
+    gap: 24px
+    align-items: start
+  &__contact-wrapper
+    display: grid
+    grid-auto-flow: column
+    gap: 16px
+    justify-content: start
+  &__contact-text
+    color: #fff
+    font-size: 24px
+    font-weight: 500
+    line-height: 130%
+  &__contact-link
+    cursor: pointer
+    padding: 7px 11px
+    border-radius: 36px
+    border: 1px solid #fff
+    background: #FFF
+    display: grid
+    grid-auto-flow: column
+    gap: 8px
+    align-items: center
+    transition: border $anim
+    p
+      color: $gray-darken-3
+      font-size: 20px
+      font-weight: 400
+      line-height: 130%
+      transition: color $anim
+    &:active p, &:hover p, &:focus p
+      color: $green
+    &:active, &:hover, &:focus 
+      border: 1px solid $green

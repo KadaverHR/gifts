@@ -1,8 +1,10 @@
 $(document).ready(function () {
 
   //год
-  // document.getElementById("year").innerHTML = new Date().getFullYear();
-  /// svg
+  document.getElementById("year").innerHTML = new Date().getFullYear();
+
+  
+  // / svg
 
 
   AOS.init()

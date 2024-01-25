@@ -3,10 +3,13 @@
   grid-template-columns: repeat(2,1fr)
   gap: 32px 24px
   width: 100%
-  &__box
+  &__block
+    display: grid
     padding: 56px
     border-radius: 8px
     background: $green
+    align-content: space-between
+  &__box
     display: grid
     justify-items: start
     align-items: start
@@ -110,11 +113,9 @@
     color: $gray-lighten-4
 
   & .form__input:focus,
-  & .form__input:hover, 
-  & .form__input:active 
+  & .form__input:hover,
+  & .form__input:active
     border: 1px solid $gray-lighten-4
-
-
 
   .select2-selection__rendered, .selection
     color: $gray-darken-1
