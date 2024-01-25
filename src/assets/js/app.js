@@ -240,21 +240,11 @@ $(document).ready(function () {
         });
     }
   }
-  // let select = new Select();
-
-  // let popoverTriggerList = [].slice.call(
-  //   document.querySelectorAll('[data-bs-toggle="popover"]')
-  // );
-
-  // popoverTriggerList.map(function (popoverTriggerEl) {
-  //   return new bootstrap.Popover(popoverTriggerEl);
-  // });
-
- 
 
 
-  const selectCity = new Select($(".city"), "Город");
-  const selectAdvice = new Select($(".advice"), "Как вы узнали о ярмарке");
+
+  const selectCity = new Select($(".city"), "");
+  const selectAdvice = new Select($(".advice"), "");
 
   selectCity.init();
   selectAdvice.init();
@@ -262,10 +252,99 @@ $(document).ready(function () {
 
 
 
+  ////label сверху input
+
+  let inputBlock = document.querySelectorAll('.input_block')
 
 
+  inputBlock.forEach(elem => {
+    let input = elem.querySelector('.form__input')
+    let labelInput = elem.querySelector('.label-input')
+    input.addEventListener('input', () => {
+      labelInput.classList.add('active')
+    })
+    input.addEventListener('blur', () => {
+      console.log(input.value)
+      if (input.value === "") {
+        labelInput.classList.remove('active')
+      }
 
+    });
+  })
 
+  ////label сверху select
+
+  let selectBlock = document.querySelectorAll('.select_block')
+
+  selectBlock.forEach(elem => {
+    let select = elem.querySelector('.select2-selection__rendered')
+    let labelSelect = elem.querySelector('.label-input-select')
+    select.addEventListener('click', () => {
+      labelSelect.classList.add('active')
+
+    })
+    document.addEventListener('click', (e) => {
+      const withinBoundaries = e.composedPath().includes(select);
+      if (!withinBoundaries && select.innerHTML === '<span class="select2-selection__placeholder"></span>') {
+        labelSelect.classList.remove('active')
+      }
+    })
+  })
+
+  ////валидация
+
+  const validation = new JustValidate('#form', {
+    errorFieldCssClass: 'is-invalid',
+    errorLabelStyle: {
+      fontSize: '12px',
+      color: '#F65252',
+    },
+    focusInvalidField: true,
+    lockForm: true,
+  });
+  console.log(validation);
+  validation
+    .addField('#name_input', [
+      {
+        rule: 'required',
+        errorMessage: 'Вы не ввели имя',
+
+      },
+      {
+        rule: 'minLength',
+        value: 3,
+        errorMessage: 'Слишком короткое имя',
+      },
+      {
+        rule: 'maxLength',
+        value: 30,
+        errorMessage: 'Слишком длинное имя',
+      }
+    ])
+    // .addField('#email', [
+    //   {
+    //     rule: 'required',
+    //     errorMessage: 'Вы не ввели e-mail',
+    //   },
+    //   {
+    //     rule: 'email',
+    //     errorMessage: 'Не верный формат e-mail',
+    //   },
+    // ])
+    .addField('#tel_input', [
+      {
+        rule: 'required',
+        errorMessage: 'Вы не ввели телефон',
+      },
+      // {
+      //   validator: value => {
+      //     console.log(value);
+      //     const phone = selector.inputmask.unmaskedvalue()
+      //     return Number(phone) && phone.length === 10;
+      //   },
+      //   errorMessage: 'Не верный формат телефона',
+      // }
+    ])
 
 
 })

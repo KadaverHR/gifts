@@ -721,38 +721,49 @@
 				<form class="form" action="" id="form" name="form">
 
 					<div class="input_block">
-						<input type="text" name="name" id="name_input">
-						<label for="name_input">
-							<span>Ваше имя</span>
+						<input required class="form__input" type="text" name="name" id="name_input">
+						<label class="label-input" for="name_input">
+							<span class="label-span">Ваше имя</span>
 						</label>
 					</div>
 
 					<div class="input_block">
-						<input type="tel" name="tel" id="tel_input">
-						<label for="tel_input">
-							<span>Номер телефона</span>
+						<input required class="form__input" type="tel" name="tel" id="tel_input">
+						<label class="label-input" for="tel_input">
+							<span class="label-span">Номер телефона</span>
 						</label>
 					</div>
 
 
+					<div class="select_block">
 
-					<select class="select-filter select-type city" name="city" id="city">
-						<option value=""></option>
-						<option value="1">Орел</option>
-						<option value="2">Москва</option>
-						<option value="3">Питер</option>
-					</select>
+						<select class="city" name="city" id="city">
+							<option value=""></option>
+							<option value="1">Орел</option>
+							<option value="2">Москва</option>
+							<option value="3">Питер</option>
+						</select>
+						<label class="label-input-select" for="city">
+							<span class="label-span">Город</span>
+						</label>
+					</div>
 
-					<select class="select-filter select-type advice" name="advice" id="advice">
-						<option value=""></option>
-						<option value="1">Интернет</option>
-						<option value="2">Газета</option>
-						<option value="3">Смс</option>
-					</select>
+					<div class="select_block">
+
+						<select class="advice" name="advice" id="advice">
+							<option value=""></option>
+							<option value="1">Интернет</option>
+							<option value="2">Газета</option>
+							<option value="3">Смс</option>
+						</select>
+						<label class="label-input-select" for="city">
+							<span class="label-span">Город</span>
+						</label>
+					</div>
 				</form>
 
 				<div class="form__submit">
-					<button for="form" type="submit" class="request__btn">
+					<button form="form" type="submit" class="request__btn">
 						Отравить заявку
 					</button>
 					<p class="form__submit-text">

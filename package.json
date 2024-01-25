@@ -49,6 +49,7 @@
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "jquery": "^3.6.0",
+    "just-validate": "^4.3.0",
     "normalize.css": "^8.0.1",
     "rangeslider.js": "^2.3.3",
     "reset-css": "^5.0.1",
