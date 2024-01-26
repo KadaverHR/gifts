@@ -1,0 +1,82 @@
+.burger
+  display: none
+.header__nav-mobile
+  display: none
+
+@media all and ($m)
+  .burger
+    display: block
+    position: relative
+    width: 30px
+    height: 40px
+    background-color: transparent
+    border: none
+    cursor: pointer
+    &__line
+      position: absolute
+      left: 50%
+      transform: translateX(-50%)
+      width: 30px
+      height: 3px
+      background-color: var(--black-color)
+    &__line:first-child
+      top: 7px
+    &__line:last-child
+      bottom: 7px
+    &__line:nth-child(2)
+      top: 50%
+      transform: translate(-50%, -50%)
+  .header
+    &__nav-mobile
+      display: flex
+      cursor: pointer
+    &__list-mobile
+      position: fixed
+      display: flex
+      flex-direction: column
+      left: 0
+      top: 0
+      width: 420px
+      height: 100vh
+      z-index: 1000
+      padding-left: 50px
+      padding-top: 170px
+      box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.1)
+      background-color: var(--white-color)
+      border-radius: 0 0 var(--radius) var(--radius)
+      position: absolute
+      display: flex
+      flex-direction: column
+      gap: 60px
+      overflow-y: auto
+      visibility: hidden
+      transform: translateX(-120%)
+      transition: visibility 0.3s ease-in-out, transform 0.3s ease-in-out
+      &--active
+        visibility: visible
+        transform: none
+      .header__item .header__link
+        font-size: 24px
+        line-height: 29px
+
+  .burger--active
+    z-index: 1001
+    padding-left: 50px
+    &__line:first-child
+      left: 25%
+      top: 50%
+      transform: rotate(45deg)
+      transform-origin: center
+      transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, left 0.3s ease-in-out
+    &__line:last-child
+      left: 25%
+      top: 50%
+      transform: rotate(-45deg)
+      transform-origin: center
+      transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, left 0.3s ease-in-out
+    &__line:nth-child(2)
+      opacity: 0
+  .stop-scroll
+    overflow: hidden
+  .header__list
+    display: none

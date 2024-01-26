@@ -3,7 +3,7 @@ $(document).ready(function () {
   //год
   document.getElementById("year").innerHTML = new Date().getFullYear();
 
-  
+
   // / svg
 
 
@@ -50,55 +50,52 @@ $(document).ready(function () {
 
 
   new Swiper(".reviews__box", {
+    slidesPerView: 'auto',
     navigation: {
       nextEl: ".reviews__swiper-button-next",
       prevEl: ".reviews__swiper-button-prev",
     },
     spaceBetween: 24,
-    breakpoints: {
-      0: {
-        slidesPerView: 2,
-      },
-      576: {
-        slidesPerView: 3,
-      },
-      768: {
-        slidesPerView: 3,
-      },
-      891: {
-        slidesPerView: 4,
-      },
-      1920: {
-        slidesPerView: 6,
-      },
-    },
+    // breakpoints: {
+    //   // 0: {
+    //   //   slidesPerView: 2,
+    //   // },
+    //   // 576: {
+    //   //   slidesPerView: 3,
+    //   // },
+    //   // 768: {
+    //   //   slidesPerView: 3,
+    //   // },
+    //   1344.9: {
+    //     slidesPerView: 6,
+    //   },
+    //   1920: {
+    //     slidesPerView: 6,
+    //   },
+    // },
   });
 
 
 
-  // Бургер
-  // let burger = document.querySelector('.burger');
-  // let menu = document.querySelector('.header__list-mobile');
-  // let menuLinks = menu.querySelectorAll('.header__link');
+  Бургер
+  let burger = document.querySelector('.burger');
+  let menu = document.querySelector('.header__list-mobile');
+  let menuLinks = menu.querySelectorAll('.header__link');
 
 
-  // burger.addEventListener('click', function () {
-  //   burger.classList.toggle('burger--active');
-  //   menu.classList.toggle('header__list-mobile--active');
-  //   document.body.classList.toggle('stop-scroll');
-  // });
+  burger.addEventListener('click', function () {
+    burger.classList.toggle('burger--active');
+    menu.classList.toggle('header__list-mobile--active');
+    document.body.classList.toggle('stop-scroll');
+  });
 
-  // menuLinks.forEach(function (el) {
-  //   el.addEventListener('click', function () {
-  //     burger.classList.remove('burger--active');
-  //     menu.classList.remove('header__list-mobile--active');
-  //     document.body.classList.remove('stop-scroll')
-  //   })
-  // });
-
-
-
-
+  menuLinks.forEach(function (el) {
+    el.addEventListener('click', function () {
+      burger.classList.remove('burger--active');
+      menu.classList.remove('header__list-mobile--active');
+      document.body.classList.remove('stop-scroll')
+    })
+  });
 
 
 
@@ -171,19 +168,6 @@ $(document).ready(function () {
       center: destinations['OR'], // Московское шоссе, д.173
       zoom: 13.5
     });
-
-    // Добавление метки
-    // https://tech.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Placemark-docpage/
-    // let myPlacemark = new ymaps.Placemark([53.014796, 36.156400], {}, {
-    //   //опции
-    //   iconLayout: 'default#image',
-    //   iconImageHref: '../assets/img/icon-map.svg',
-    //   iconImageSize: [54, 77],
-    //   iconImageOffset: [-27, -54],
-    // });
-
-    // После того как метка была создана, добавляем её на карту.
-    // myMap.geoObjects.add(myPlacemark);
 
 
     let myPlacemark = new ymaps.Placemark(destinations['KOM'], {}, {
