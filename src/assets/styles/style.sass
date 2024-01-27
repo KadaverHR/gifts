@@ -46,7 +46,7 @@ span
   margin-inline-start: 0px
   margin-inline-end: 0px
 
-h1, h2
+h1, h2, h3
   margin-block-start: 0
   margin-block-end: 0
 
@@ -68,85 +68,14 @@ img
   font-family: $Int
   font-size: 48px
   font-weight: 500
+  @media all and ($m)
+    font-size: 24px
 
 section
   margin-bottom: 112px
+  // overflow: hidden
+  @media all and ($m)
+    margin-bottom: 72px
 
-.about
-  &__box
-    display: grid
-    grid-template-areas: "one one one one one one" " . two two two two two" " . . three three three three"
-    grid-template-columns: repeat(6, 1fr)
-    padding-bottom: 25px
-  &__icon
-    margin-top: -30px
-    margin-right: -15px
-  &__block
-    padding: 56px 40px
-    display: grid
-    grid-template-columns: repeat(24, 1fr)
-    gap: 24px
-    border-radius: 24px
-    background: $gray-lighten-1
-    position: relative
-    margin-bottom: -25px
-    &::before
-      content: ""
-      background-repeat: no-repeat
-      left: 0
-      position: absolute
-      background-position: bottom left
-      bottom: 0
-      opacity: 0.1
-    &--1
-      grid-area: one
-      &::before
-        background-image: url(../../assets/img/b1.svg)
-        width: 320px
-        height: 320px
-      .title
-        grid-column: 1/9
-      .about__desc
-        grid-column: 12/23
-      .about__icon
-        grid-column: 24/25
-    &--3
-      grid-area: three
-      grid-template-columns: repeat(16,1fr)
-      &::before
-        background-image: url(../../assets/img/b3.svg)
-        width: 242px
-        height: 242px
-      .title
-        grid-column: 1/7
-      .about__desc
-        grid-column: 9/16
-      .about__icon
-        grid-column: 16/17
-    &--2
-      grid-area: two
-      background: $green
-      grid-template-columns: repeat(20, 1fr )
-      .title
-        color: #fff
-        grid-column: 1/10
-      .about__desc
-        color: $gray-lighten-1
-        grid-column: 11/19
-      .about__icon
-        grid-column: 20/21
-      &::before
-        background-image: url(../../assets/img/b2.svg)
-        width: 321px
-        height: 349px
-  &__desc
-    color: $gray-darken-1
-    font-size: 20px
-    font-weight: 400
-    line-height: 130%
-    & span
-      display: block
-      padding-bottom: 20px
-      &:last-of-type
-        padding-bottom: 0
-
+.d-n
+  display: none !important

@@ -3,7 +3,20 @@ $(document).ready(function () {
   //год
   document.getElementById("year").innerHTML = new Date().getFullYear();
 
+  // scroll
+  const anchors = document.querySelectorAll('a[href*="#"]')
+  for (let anchor of anchors) {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault()
 
+      const blockID = anchor.getAttribute('href').substr(1)
+
+      document.getElementById(blockID).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    })
+  }
   // / svg
 
 
@@ -77,7 +90,7 @@ $(document).ready(function () {
 
 
 
-  Бургер
+  // Бургер
   let burger = document.querySelector('.burger');
   let menu = document.querySelector('.header__list-mobile');
   let menuLinks = menu.querySelectorAll('.header__link');
@@ -96,8 +109,6 @@ $(document).ready(function () {
       document.body.classList.remove('stop-scroll')
     })
   });
-
-
 
 
 
@@ -227,15 +238,15 @@ $(document).ready(function () {
     }
   }
 
+  if (window.screen.availWidth >= 960) {
 
+    const selectCity = new Select($(".city"), "");
+    const selectAdvice = new Select($(".advice"), "");
 
-  const selectCity = new Select($(".city"), "");
-  const selectAdvice = new Select($(".advice"), "");
+    selectCity.init();
+    selectAdvice.init();
 
-  selectCity.init();
-  selectAdvice.init();
-
-
+  }
 
 
   ////label сверху input
@@ -258,24 +269,84 @@ $(document).ready(function () {
     });
   })
 
-  ////label сверху select
 
-  let selectBlock = document.querySelectorAll('.select_block')
 
-  selectBlock.forEach(elem => {
-    let select = elem.querySelector('.select2-selection__rendered')
-    let labelSelect = elem.querySelector('.label-input-select')
-    select.addEventListener('click', () => {
-      labelSelect.classList.add('active')
+  ////label сверху select мобильный
+  console.log(window.screen.availWidth);
+  if (window.screen.availWidth < 960) {
+    let selectBlock = document.querySelectorAll('.select_block')
 
+    selectBlock.forEach(elem => {
+      let selectMob = elem.querySelector('select')
+      console.log(selectMob)
+      let labelSelect = elem.querySelector('.label-input-select')
+      selectMob.addEventListener('click', () => {
+        labelSelect.classList.add('active')
+
+      })
+      document.addEventListener('click', (e) => {
+        const withinBoundaries = e.composedPath().includes(selectMob);
+        console.log(selectMob.value)
+        if (!withinBoundaries && selectMob.value == '') {
+          labelSelect.classList.remove('active')
+        }
+      })
     })
-    document.addEventListener('click', (e) => {
-      const withinBoundaries = e.composedPath().includes(select);
-      if (!withinBoundaries && select.innerHTML === '<span class="select2-selection__placeholder"></span>') {
-        labelSelect.classList.remove('active')
-      }
+  }
+  else {
+    ////label сверху select
+
+    let selectBlock = document.querySelectorAll('.select_block')
+
+    selectBlock.forEach(elem => {
+      let select = elem.querySelector('.select2-selection__rendered')
+      let labelSelect = elem.querySelector('.label-input-select')
+      select.addEventListener('click', () => {
+        labelSelect.classList.add('active')
+
+      })
+      document.addEventListener('click', (e) => {
+        const withinBoundaries = e.composedPath().includes(select);
+        if (!withinBoundaries && select.innerHTML === '<span class="select2-selection__placeholder"></span>') {
+          labelSelect.classList.remove('active')
+        }
+      })
+    })
+
+  }
+
+  window.addEventListener('scroll', function () {
+
+    SmoothScroll({
+      // Время скролла 400 = 0.4 секунды
+      animationTime: 800,
+      // Размер шага в пикселях
+      stepSize: 75,
+
+      // Дополнительные настройки:
+
+      // Ускорение
+      accelerationDelta: 30,
+      // Максимальное ускорение
+      accelerationMax: 2,
+
+      // Поддержка клавиатуры
+      keyboardSupport: true,
+      // Шаг скролла стрелками на клавиатуре в пикселях
+      arrowScroll: 50,
+
+      // Pulse (less tweakable)
+      // ratio of "tail" to "acceleration"
+      pulseAlgorithm: true,
+      pulseScale: 4,
+      pulseNormalize: 1,
+
+      // Поддержка тачпада
+      touchpadSupport: true,
     })
   })
+
+
 
   ////валидация
 
@@ -288,7 +359,6 @@ $(document).ready(function () {
     focusInvalidField: true,
     lockForm: true,
   });
-  console.log(validation);
   validation
     .addField('#name_input', [
       {
@@ -307,30 +377,30 @@ $(document).ready(function () {
         errorMessage: 'Слишком длинное имя',
       }
     ])
-    // .addField('#email', [
-    //   {
-    //     rule: 'required',
-    //     errorMessage: 'Вы не ввели e-mail',
-    //   },
-    //   {
-    //     rule: 'email',
-    //     errorMessage: 'Не верный формат e-mail',
-    //   },
-    // ])
+
     .addField('#tel_input', [
       {
         rule: 'required',
         errorMessage: 'Вы не ввели телефон',
       },
-      // {
-      //   validator: value => {
-      //     console.log(value);
-      //     const phone = selector.inputmask.unmaskedvalue()
-      //     return Number(phone) && phone.length === 10;
-      //   },
-      //   errorMessage: 'Не верный формат телефона',
-      // }
+
     ])
+
+
+
+  ///каталог 
+
+  let allBtn = document.querySelector('.catalog__all-btn')
+  let allCatalog = document.querySelectorAll('.catalog__item--hidden')
+
+
+  allBtn.addEventListener('click', () => {
+    allBtn.classList.add('d-n')
+    allCatalog.forEach(element => {
+      element.classList.toggle('hidden')
+    });
+  })
+
 
 
 })

@@ -30,25 +30,16 @@
     padding-left: 0
     padding-right: 0
 
-.advantages
-  &__box
-    display: grid
-    grid-template-columns: repeat(3, 1fr)
-    gap: 72px
-  &__item
-    display: grid
-    gap: 16px
-    svg
-      margin-bottom: 16px
-      width: 96px
-      height: 96px
-  &__item-title
-    color: $gray-darken-2
-    font-size: 20px
-    font-weight: 500
-    line-height: 130%
-  &__item-desc
-    color: $gray-text
-    font-size: 20px
-    font-weight: 400
-    line-height: 130%
+@media all and ($m)
+  .banner
+    height: 632px
+    &__box
+      max-width: 530px
+      gap: 40px
+      margin-top: 96px
+    &__title
+      font-size: 32px
+    &__subtitle
+      font-size: 14px
+    &__text
+      font-size: 14px

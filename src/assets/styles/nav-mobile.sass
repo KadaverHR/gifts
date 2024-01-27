@@ -1,6 +1,6 @@
 .burger
   display: none
-.header__nav-mobile
+.header__nav-box-mobile
   display: none
 
 @media all and ($m)
@@ -18,7 +18,7 @@
       transform: translateX(-50%)
       width: 30px
       height: 3px
-      background-color: var(--black-color)
+      background-color: #fff
     &__line:first-child
       top: 7px
     &__line:last-child
@@ -27,54 +27,69 @@
       top: 50%
       transform: translate(-50%, -50%)
   .header
-    &__nav-mobile
+    &__nav-box-mobile
       display: flex
       cursor: pointer
+    &__btn-mobile
+      display: none
     &__list-mobile
-      position: fixed
-      display: flex
+      // display: flex
       flex-direction: column
-      left: 0
+      justify-content: space-between
+      right: 0
       top: 0
-      width: 420px
+      width: 296px
       height: 100vh
       z-index: 1000
-      padding-left: 50px
-      padding-top: 170px
-      box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.1)
-      background-color: var(--white-color)
-      border-radius: 0 0 var(--radius) var(--radius)
+      padding: 40px 16px 80px 16px
+      background-color: #fff
       position: absolute
-      display: flex
-      flex-direction: column
       gap: 60px
       overflow-y: auto
       visibility: hidden
-      transform: translateX(-120%)
-      transition: visibility 0.3s ease-in-out, transform 0.3s ease-in-out
+      transform: translateX(120%)
+      transition: visibility $anim, transform $anim, display $anim
+      display: none
       &--active
         visibility: visible
         transform: none
+        display: flex
+        .header__btn-mobile
+          display: flex
+          justify-content: center
+          .header__link
+            color: #fff
       .header__item .header__link
         font-size: 24px
         line-height: 29px
+      .header__nav-mobile
+        padding-top: 40px
+        display: grid
+        grid-auto-flow: row
+        gap: 32px
+      .header__link
+        color: $gray-darken-4
+        font-size: 14px
+        font-weight: 500
+        line-height: 130%
 
   .burger--active
     z-index: 1001
     padding-left: 50px
-    &__line:first-child
+    .burger__line
+      background: $gray-lighten-4
+      transition: transform $anim, top $anim, left $anim, color $anim
+    .burger__line:first-child
       left: 25%
       top: 50%
       transform: rotate(45deg)
       transform-origin: center
-      transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, left 0.3s ease-in-out
-    &__line:last-child
+    .burger__line:last-child
       left: 25%
       top: 50%
       transform: rotate(-45deg)
       transform-origin: center
-      transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, left 0.3s ease-in-out
-    &__line:nth-child(2)
+    .burger__line:nth-child(2)
       opacity: 0
   .stop-scroll
     overflow: hidden
