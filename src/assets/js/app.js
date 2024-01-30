@@ -114,40 +114,22 @@ $(document).ready(function () {
 
   /////плеер
 
-  new Playerjs({
-    id: "reviews1",
-    file: "assets/img/video/1.mp4",
-    poster: "assets/img/video1.jpg",
-  })
-  new Playerjs({
-    id: "reviews2",
-    file: "assets/img/video/2.mp4",
-    poster: "assets/img/video2.jpg"
-  })
-  new Playerjs({
-    id: "reviews3",
-    file: "assets/img/video/3.mp4",
-    poster: "assets/img/video3.jpg"
-  })
-  new Playerjs({
-    id: "reviews4",
-    file: "assets/img/video/4.mp4",
-    poster: "assets/img/video4.jpg"
-  })
-  new Playerjs({
-    id: "reviews5",
-    file: "assets/img/video/5.mp4",
-    poster: "assets/img/video5.jpg"
-  });
-  new Playerjs({
-    id: "reviews6",
-    file: "assets/img/video/1.mp4",
-    poster: "assets/img/video6.jpg"
-  });
-  new Playerjs({
-    id: "reviews7",
-    file: "assets/img/video/2.mp4",
-    poster: "assets/img/video1.jpg"
+
+  let videoBox = document.querySelectorAll('.reviews__video-box')
+
+  videoBox.forEach(elem => {
+    let videoElem = elem.querySelector('.reviews__video')
+    dataVideo = videoElem.getAttribute('data-video')
+    dataImg = videoElem.getAttribute('data-image')
+    dataId = videoElem.getAttribute('id')
+
+
+    new Playerjs({
+      id: dataId,
+      file: dataVideo,
+      poster: dataImg,
+    })
+
   });
 
 
