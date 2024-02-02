@@ -8,9 +8,11 @@
 <section class="banner container">
 
 	{% include "html/includes/header.html" %}
-
+	<video class="banner__bg" src="assets/img/video/video-bg.mp4" type="video/mp4" autoplay muted loop></video>
+	<div class="banner__bg-effects"></div>
 
 	<div class="banner__box">
+
 		<h3 class="banner__subtitle">
 			ЯРМАРКА «ОТ АБХАЗИИ ДО КАМЧАТКИ»
 		</h3>
@@ -91,7 +93,7 @@
 			<div class="calendar__box">
 
 				<div class="calendar__item">
-					<img class="calendar__img" src="assets/img/img1.jpg" alt="ярмарка в Екатеринбурге">
+					<img class="calendar__img" src="assets/img/banner.jpg" alt="ярмарка в Екатеринбурге">
 					<div class="calendar__title-date">
 						<div class="calendar__date-box gray">
 							<p class="calendar__date">
@@ -214,6 +216,36 @@
 					</div>
 				</div>
 
+				<div class="calendar__item">
+					<img class="calendar__img" src="assets/img/img1.jpg" alt="ярмарка в Екатеринбурге">
+					<div class="calendar__title-date">
+						<div class="calendar__date-box">
+							<p class="calendar__date">
+								<img class="svg" src="assets/img/date.svg">
+								с 12 по 30 декабря
+							</p>
+						</div>
+						<p class="calendar__item-title">
+							г. Екатеринбург
+						</p>
+					</div>
+					<div class="calendar__desc-box">
+						<p class="calendar__desc-label">
+							Адрес
+						</p>
+						<p class="calendar__desc">
+							ТРЦ "iMall Эспланада", минус первый этаж Петропавловская ул., д.73А
+						</p>
+					</div>
+					<div class="calendar__desc-box">
+						<p class="calendar__desc-label">
+							Время работы
+						</p>
+						<p class="calendar__desc">
+							с 10:00 до 22:00
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -224,7 +256,7 @@
 		<div class="request__box">
 			<div data-aos="fade-right" class="request__btn-box">
 				<h2 class="title">
-					Отправьте заявку и получите скидку 10% на покупки
+					Отправьте заявку и получите <br> скидку 10% на покупки
 				</h2>
 				<button class="request__btn">
 					Отравить заявку
@@ -256,7 +288,10 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
+
 			</a>
 			<a href="" style="background-color: #FDE4CF ;" class="catalog__item">
 				<div class="catalog__content">
@@ -271,7 +306,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #FFCFD2 ;" class="catalog__item">
 				<div class="catalog__content">
@@ -287,7 +324,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #F1C0E8 ;" class="catalog__item">
 				<div class="catalog__content">
@@ -303,7 +342,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #CFBAF0 ;" class="catalog__item">
 				<div class="catalog__content">
@@ -319,7 +360,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #A3C4F3 ;" class="catalog__item">
 				<div class="catalog__content">
@@ -336,7 +379,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #90DBF4 ;" class="catalog__item catalog__item--hidden hidden">
 				<div class="catalog__content">
@@ -354,7 +399,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #98F5E1 ;" class="catalog__item catalog__item--hidden hidden">
 				<div class="catalog__content">
@@ -371,7 +418,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #B9FBC0 ;" class="catalog__item catalog__item--hidden hidden">
 				<div class="catalog__content">
@@ -387,7 +436,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #D8E2DC ;" class="catalog__item catalog__item--hidden hidden">
 				<div class="catalog__content">
@@ -404,7 +455,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #E8E8E4;" class="catalog__item catalog__item--hidden hidden">
 				<div class="catalog__content">
@@ -421,7 +474,9 @@
 				</div>
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 			</a>
 			<a href="" style="background-color: #FFD7BA ;" class="catalog__item catalog__item--hidden hidden">
 				<div class="catalog__content">
@@ -440,7 +495,9 @@
 
 
 
-				<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				<div class="catalog__bg">
+					<img class="catalog__background" src="assets/img/catalog1.jpg" alt="">
+				</div>
 
 			</a>
 		</div>
@@ -521,7 +578,8 @@
 								г. Санкт-Петербург
 							</p>
 						</div>
-						<div data-video="assets/img/video/1.mp4" data-image="assets/img/video1.jpg" class="reviews__video" id="reviews1"></div>
+						<div data-video="assets/img/video/1.mp4" data-image="assets/img/video1.jpg" class="reviews__video"
+							id="reviews1"></div>
 					</div>
 				</div>
 				<div class="swiper-slide">
@@ -534,7 +592,8 @@
 								г. Новосибирск
 							</p>
 						</div>
-						<div data-video="assets/img/video/2.mp4" data-image="assets/img/video2.jpg" class="reviews__video" id="reviews2"></div>
+						<div data-video="assets/img/video/2.mp4" data-image="assets/img/video2.jpg" class="reviews__video"
+							id="reviews2"></div>
 					</div>
 				</div>
 				<div class="swiper-slide">
@@ -547,7 +606,8 @@
 								г. Нижний-Новгород
 							</p>
 						</div>
-						<div data-video="assets/img/video/3.mp4" data-image="assets/img/video3.jpg" class="reviews__video" id="reviews3">
+						<div data-video="assets/img/video/3.mp4" data-image="assets/img/video3.jpg" class="reviews__video"
+							id="reviews3">
 						</div>
 					</div>
 				</div>
@@ -561,7 +621,8 @@
 								г. Санкт-Петербург
 							</p>
 						</div>
-						<div data-video="assets/img/video/4.mp4" data-image="assets/img/video4.jpg" class="reviews__video" id="reviews4">
+						<div data-video="assets/img/video/4.mp4" data-image="assets/img/video4.jpg" class="reviews__video"
+							id="reviews4">
 						</div>
 					</div>
 				</div>
@@ -575,7 +636,8 @@
 								г. Омск
 							</p>
 						</div>
-						<div data-video="assets/img/video/5.mp4" data-image="assets/img/video5.jpg" class="reviews__video" id="reviews5">
+						<div data-video="assets/img/video/5.mp4" data-image="assets/img/video5.jpg" class="reviews__video"
+							id="reviews5">
 						</div>
 					</div>
 				</div>
@@ -589,7 +651,8 @@
 								г. Ростов-на-Дону
 							</p>
 						</div>
-						<div data-video="assets/img/video/4.mp4" data-image="assets/img/video4.jpg" class="reviews__video" id="reviews6">
+						<div data-video="assets/img/video/4.mp4" data-image="assets/img/video4.jpg" class="reviews__video"
+							id="reviews6">
 						</div>
 					</div>
 				</div>
@@ -603,7 +666,8 @@
 								г. Ростов-на-Дону
 							</p>
 						</div>
-						<div data-video="assets/img/video/1.mp4" data-image="assets/img/video1.jpg" class="reviews__video" id="reviews7">
+						<div data-video="assets/img/video/1.mp4" data-image="assets/img/video1.jpg" class="reviews__video"
+							id="reviews7">
 						</div>
 					</div>
 				</div>

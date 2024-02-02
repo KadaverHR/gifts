@@ -1,11 +1,12 @@
 
 .calendar
   &__area
-    overflow-x: auto
+    @media all and ($xl)
+      overflow-x: auto
   &__box
     margin-top: 32px
     display: grid
-    grid-template-columns: repeat( 4, minmax(218px, 408px))
+    grid-template-columns: repeat( 5, 1fr)
     gap: 32px 24px
     padding-bottom: 5px
   &__item
@@ -19,7 +20,17 @@
     gap: 16px
   &__img
     border-radius: 8px
-    max-height: 229px
+    height: 229px
+    width: 100%
+    object-fit: cover
+    object-position: center
+    @media all and ($xl)
+      height: 155px
+    @media all and ($l)
+      height: 148px
+    @media all and ($m)
+      height: 122px
+
   &__date-box
     padding: 8px 16px
     border-radius: 4px
@@ -78,9 +89,11 @@
 .request
   .title
     color: #fff
+    font-size: 40px
     @media all and ($m)
       grid-column: 1/2
       grid-row: 1/2
+      font-size: 24px
   &__box
     display: grid
     grid-auto-flow: column
@@ -89,13 +102,17 @@
     @media all and ($m)
       grid-template-columns: 1fr
   &__btn-box
-    padding: 56px 40px
+    padding: 91.5px 40px
     border-radius: 24px
     background: $green
     display: grid
-    gap: 40px
+    gap: 32px
     justify-items: start
     position: relative
+    @media all and ($xl)
+      padding: 56px 40px
+    @media all and ($l)
+      padding: 47px 40px
     @media all and ($m)
       padding: 24px
       justify-items: stretch
@@ -120,7 +137,7 @@
 
   &__img
     border-radius: 24px
-    max-height: 342px
+    max-height: 387px
     width: 100%
     object-fit: cover
     @media all and ($m)
@@ -150,9 +167,10 @@
     display: grid
     gap: 24px
     grid-template-columns: repeat(4, 1fr)
-    @media all and ($xl)
-      grid-template-columns: repeat(3, 1fr)
+    // @media all and ($xl)
+    //   grid-template-columns: repeat(3, 1fr)
     @media all and ($m)
+      grid-template-columns: repeat(3, 1fr)
       gap: 16px
     @media all and ($s)
       grid-template-columns: repeat(2, 1fr)
@@ -160,38 +178,48 @@
       grid-template-columns: 1fr
   &__item
     border-radius: 8px
-    padding: 32px 24px
+    // padding: 32px 24px
     height: 408px
     position: relative
     overflow: hidden
+    display: grid
+    grid-template-rows: auto 1fr
+    align-content: space-between
+    gap: 20px
     &:active, &:focus, &:hover
       .catalog__background
         clip-path: ellipse(240px 229px at 100% 100%)
+        @media all and ($xl)
+          clip-path: ellipse(194px 182px at 100% 100%)
         @media all and ($m)
-          clip-path: ellipse(85px 85px at 80% 80%)
+          clip-path: ellipse(114px 110px at 100% 100%)
+    @media all and ($xl)
+      height: 360px
     @media all and ($m)
       height: 260px
     &.hidden
       @media all and ($s)
         display: none
+  &__bg
+    position: relative
   &__background
     position: absolute
     background-repeat: no-repeat
     background-size: cover
-    width: 362px
-    height: 362px
-    right: 0
+    height: 110%
     bottom: 0
+    right: 0
     clip-path: ellipse(230px 219px at 100% 100%)
     transition: clip-path $anim
     overflow: hidden
+    @media all and ($xl)
+      clip-path: ellipse(184px 172px at 100% 100%)
     @media all and ($m)
-      width: 192px
-      height: 192px
-      clip-path: ellipse(80px 80px at 80% 80%)
+      clip-path: ellipse(104px 100px at 100% 100%)
   &__content
     display: grid
     gap: 16px
+    padding: 32px 24px 0 24px
   &__title
     color: $gray-darken-3
     font-size: 20px
@@ -256,9 +284,12 @@
     justify-content: space-between
     gap: 60px
     @media all and ($xl)
+      height: 443px
       grid-auto-flow: row
       gap: 24px
       align-content: end
+    @media all and ($xl)
+      height: 419px
     @media all and ($m)
       height: 456px
       padding: 24px
@@ -378,7 +409,7 @@
     @media all and ($l)
       grid-template-columns: 1fr
   &__img
-    min-height: 922px
+    min-height: 810px
     width: 100%
     object-fit: cover
     border-radius: 8px
