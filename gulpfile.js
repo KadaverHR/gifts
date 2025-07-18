@@ -1,330 +1,198 @@
-/**
- * Include gulp plugins
- */
-const gulp = require('gulp');
-const argv = require('yargs').argv;
-const browserSync = require('browser-sync').create();
-const nunjucks = require('gulp-nunjucks');
-const sass = require('gulp-sass')(require('sass'));
-const sourcemaps = require('gulp-sourcemaps');
-const gulpif = require('gulp-if');
-const autoprefixer = require('gulp-autoprefixer');
-const csso = require('gulp-csso');
-const rename = require("gulp-rename");
-const gcmq = require('gulp-group-css-media-queries');
-const webpackStream = require('webpack-stream');
-const webpack = require('webpack');
-const plumber = require('gulp-plumber');
-const uglify = require('gulp-uglify');
-const newer = require('gulp-newer');
-const imagemin = require('gulp-imagemin');
-const imageminJpegRecompress = require('imagemin-jpeg-recompress');
-const pngquant = require('imagemin-pngquant');
-const webp = require('gulp-webp');
-const ttf2woff = require('gulp-ttf2woff');
-const ttf2woff2 = require('gulp-ttf2woff2');
-const fonter = require('gulp-fonter');
-const del = require('del');
-const hash = require('gulp-hash-filename');
-/**
- * Include projectConfig file
- */
-const projectConfig = require('./projectСonfig.json');
+import gulp from "gulp";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
+import browserSync from "browser-sync";
+import nunjucksRender from "gulp-nunjucks-render";
+import sass from "gulp-sass";
+import * as dartSass from "sass";
+import sourcemaps from "gulp-sourcemaps";
+import gulpif from "gulp-if";
+import autoprefixer from "gulp-autoprefixer";
+import postcss from "gulp-postcss";
+import sortMediaQueries from "postcss-sort-media-queries";
+import webpackStream from "webpack-stream";
+import webpack from "webpack";
+import plumber from "gulp-plumber";
+import terser from "gulp-terser";
+import newer from "gulp-newer";
+import webp from "gulp-webp";
+import { deleteAsync } from "del";
+import { readFileSync } from "fs";
+import data from "gulp-data";
+import concat from "gulp-concat";
+import merge from "merge-stream";
+import fs from "fs";
 
-/**
- * Path settings
- */
-const path = projectConfig.path;
+const sassCompiler = sass(dartSass);
+const server = browserSync.create();
+const argv = yargs(hideBin(process.argv)).argv;
 
-path.watch = {};
+const isProd = () => !!argv.prod;
+const isDev = () => !argv.prod;
 
-/**
- * Html path
- */
-path.src.html[0] = path.src.srcPath + path.src.html[0];
-path.src.html[1] = "!" + path.src.html[0].slice(0, -6) + "_*.html";
-path.src.html[2] = "!" + path.src.srcPath + "/assets";
-path.src.html[3] = "!" + path.src.srcPath + "/html";
-
-path.dist.html = path.dist.distPath + path.dist.html;
-
-path.watch.html = [];
-path.watch.html[0] = path.src.html[0];
-
-/**
- * Css path
- */
-path.src.style[0] = path.src.srcPath + path.src.style[0];
-
-path.dist.style = path.dist.distPath + path.dist.style;
-
-// path.watch.style = [];
-// path.watch.style[0]  = path.src.style[0].replace( path.src.style[0].split('/').pop(), '**/*.scss' );
-
-path.watch.style = [];
-path.watch.style[0] = path.src.style[0].replace(path.src.style[0].split('/').pop(), '**/*.sass');
-/**
- * Js path
- */
-path.src.script[0] = path.src.srcPath + path.src.script[0];
-
-path.dist.script = path.dist.distPath + path.dist.script;
-
-path.watch.script = [];
-path.watch.script[0] = path.src.script[0].replace(path.src.script[0].split('/').pop(), '**/*.js');
-// /**
-//  * Libs path
-//  */
-path.src.libs[0] = path.src.srcPath + path.src.libs[0];
-
-path.dist.libs = path.dist.distPath + path.dist.libs;
-
-path.watch.libs = [];
-// path.watch.libs[0] = path.src.libs[0].replace(path.src.libs[0].split('/').pop(), '**/*.js');
-
-/**
- * Images path
- */
-path.src.image[0] = path.src.srcPath + path.src.image[0];
-path.src.image[1] = "!" + path.src.image[0].slice(0, -6) + "svgIcons/*.svg";
-
-path.dist.image = path.dist.distPath + path.dist.image;
-
-path.watch.image = [];
-path.watch.image[0] = path.src.image[0];
-path.watch.image[1] = "!" + path.src.image[0].slice(0, -6) + "svgIcons/*.svg";
-
-/**
- * Fonts path
- */
-path.src.font[0] = path.src.srcPath + path.src.font[0];
-path.src.font[1] = "!" + path.src.font[0].slice(0, -6) + "src/*.*";
-
-path.dist.font = path.dist.distPath + path.dist.font;
-
-path.watch.font = [];
-path.watch.font[0] = path.src.font[0];
-path.watch.font[1] = "!" + path.src.font[0].slice(0, -6) + "src/*.*";
-
-/**
- * Dev check
- */
-const isDev = function () {
-  return !argv.prod;
-}
-
-/**
- * Prod check
- */
-const isProd = function () {
-  return !!argv.prod;
-}
-
-/**
- * Serve
- */
-function browsersync() {
-  browserSync.init({
-    open: true,
-    server: path.dist.distPath
-  });
-}
-
-/**
- * Html
- */
-function njk() {
-  return gulp.src(path.src.html)
-    .pipe(nunjucks.compile())
-    .pipe(gulp.dest(path.dist.html))
-    .on('end', browserSync.reload);
-}
-
-exports.njk = njk;
-
-/**
- * Style
- */
-
-
-function scss() {
-
-  return gulp.src(path.src.style)
-    .pipe(gulpif(isDev(), sourcemaps.init()))
-    .pipe(sass())
-    .pipe(gulpif(isProd(), autoprefixer({
-      grid: true
-    })))
-    .pipe(gulpif(isProd(), gcmq()))
-    .pipe(gulpif(isDev(), sourcemaps.write()))
-    .pipe(gulpif(isProd(), gulp.dest(path.dist.style)))
-    .pipe(gulpif(isProd(), csso()))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(path.dist.style))
-    .pipe(browserSync.reload({stream: true}))
-}
-
-/**
- * Script
- */
-const webpackConf = {
-  mode: isDev() ? 'development' : 'production',
-  devtool: isDev() ? 'eval-source-map' : false,
-  optimization: {
-    minimize: false
+const path = {
+  src: {
+    html: "src/*.html",
+    data: "src/data/**/*.{json,js}",
+    scss: ["src/assets/styles/main.sass", "src/assets/styles/libs/*.*"],
+    js: "src/assets/js/**/*.{js,ts}",
+    image: "src/assets/img/**/*.{jpg,jpeg,png,gif,svg}",
+    fonts: "src/assets/fonts/**/*.{woff,woff2,ttf}",
   },
-  output: {
-    filename: 'app.js',
+  dist: {
+    base: "dist/",
+    html: "dist/",
+    css: "dist/assets/css/",
+    js: "dist/assets/js/",
+    image: "dist/assets/img/",
+    fonts: "dist/assets/fonts/",
   },
-  module: {
-    rules: []
-  }
-}
-
-if (isProd()) {
-  webpackConf.module.rules.push({
-    test: /\.(js)$/,
-    exclude: /(node_modules)/,
-    loader: 'babel-loader'
-  });
-}
-
-function script() {
-  return gulp.src(path.src.script)
-    .pipe(plumber())
-    // .pipe(webpackStream(webpackConf, webpack))
-    // .pipe(gulpif(isProd(), gulp.dest(path.dist.script)))
-    // .pipe(gulpif(isProd(), uglify()))
-    // .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(path.dist.script))
-    .pipe(browserSync.reload({stream: true}))
-}
-function libs() {
-  return gulp.src(path.src.libs)
-    // .pipe(plumber())
-    // .pipe(webpackStream(webpackConf, webpack))
-    // .pipe(gulpif(isProd(), gulp.dest(path.dist.script)))
-    // .pipe(gulpif(isProd(), uglify()))
-    // .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(path.dist.libs))
-    // .pipe(browserSync.reload({stream: true}))
-}
-/**
- * Image min
- */
-function imageMin() {
-  return gulp.src(path.src.image)
-    .pipe(newer(path.dist.image))
-    .pipe(imagemin([
-
-      imageminJpegRecompress({
-        progressive: true,
-        min: 50,
-        max: 90,
-        quality: ['high']
-      }),
-      
-      pngquant({
-        speed: 5,
-        quality: [0.6,0.8]
-      }),
-
-      imagemin.svgo({
-        plugins: [
-          {removeViewBox: false},
-          {removeUnusedNS: false},
-          {removeUselessStrokeAndFill: false},
-          {cleanupIDs: false},
-          {removeComments: true},
-          {removeEmptyAttrs: true},
-          {removeEmptyText: true},
-          {collapseGroups: true}
-        ]
-      })
-
-    ]))
-    .pipe(gulp.dest(path.dist.image))
-}
-
-/**
- * Webp
- */
-function webConverter() {
-  return gulp.src(path.dist.image + '**/*.{png,jpg,jpeg}')
-    .pipe(webp())
-    .pipe(gulp.dest(path.dist.image))
-}
-
-const image = gulp.series(imageMin, webConverter, (done) => {
-  browserSync.reload();
-  done();
-});
-
-/**
- * Woff2 converter
- */
-function ttf2woff2Converter() {
-  return gulp.src(path.src.font[0].slice(0, -6) + "src/*.ttf")
-    .pipe(ttf2woff2())
-    .pipe(gulp.dest(path.src.font[0].slice(0, -6)));
-}
-
-/**
- * Woff converter
- */
-function ttf2woffConverter() {
-  return gulp.src(path.src.font[0].slice(0, -6) + "src/*.ttf")
-    .pipe(ttf2woff())
-    .pipe(gulp.dest(path.src.font[0].slice(0, -6)));
-}
-
-/**
- * Otf to ttf converter
- */
-function otf2ttf() {
-  return gulp.src(path.src.font[0].slice(0, -6) + "src/*")
-    .pipe(fonter({
-      formats: ['ttf']
-    }))
-    .pipe(gulp.dest(path.src.font[0].slice(0, -6) + "src"));
-}
-
-const fontsConvert = gulp.series(otf2ttf, ttf2woff2Converter, ttf2woffConverter);
-exports.fontsConvert = fontsConvert;
-
-/**
- * Fonts
- */
-function font() {
-  return gulp.src(path.src.font)
-    .pipe(gulp.dest(path.dist.font))
-    .on('end', browserSync.reload);
+  watch: {
+    html: "src/**/*.html", // Изменено на src/**/*.html для отслеживания всех HTML-файлов
+    data: "src/data/**/*.{json,js}",
+    scss: "src/assets/styles/**/*.{sass,scss}",
+    js: "src/assets/js/**/*.{js,ts}",
+    image: "src/assets/img/**/*.{jpg,jpeg,png,gif,svg}",
+    fonts: "src/assets/fonts/**/*.{woff,woff2,ttf}",
+  },
 };
 
-/**
- * Clean
- */
-function clean() {
-  return del([path.dist.distPath]);
+const projectConfig = JSON.parse(readFileSync("./projectConfig.json", "utf8"));
+
+function serverStart() {
+  server.init({
+    server: {
+      baseDir: path.dist.base,
+      mimeTypes: {
+        woff: "font/woff",
+        woff2: "font/woff2",
+        ttf: "font/ttf",
+      },
+    },
+    notify: false,
+    online: true,
+    snippetOptions: {
+      rule: {
+        fn: function (snippet, match) {
+          return `<script async src="/browser-sync/browser-sync-client.js?v=3.0.4"></script>${match}`;
+        },
+      },
+    },
+  });
 }
 
-/**
- * Watch
- */
+async function clean() {
+  return await deleteAsync(path.dist.base);
+}
+
+function html() {
+  return gulp
+    .src("src/*.html")
+    .pipe(plumber())
+    .pipe(data(() => JSON.parse(fs.readFileSync("src/data/data.json", "utf8"))))
+    .pipe(
+      nunjucksRender({
+        path: ["src/html"],
+      })
+    )
+    .pipe(gulp.dest(path.dist.html))
+    .pipe(server.reload({ stream: true }));
+}
+
+function scss() {
+  const libsStream = gulp
+    .src("src/assets/styles/libs/*.*")
+    .pipe(gulpif(isDev(), sourcemaps.init()))
+    .pipe(sassCompiler().on("error", sassCompiler.logError))
+    .pipe(gulpif(isProd(), autoprefixer({ grid: true })))
+    .pipe(gulpif(isProd(), postcss([sortMediaQueries()])))
+    .pipe(gulpif(isDev(), sourcemaps.write()))
+    .pipe(gulp.dest(path.dist.css + "libs"));
+
+  const mainStream = gulp
+    .src("src/assets/styles/main.sass")
+    .pipe(gulpif(isDev(), sourcemaps.init()))
+    .pipe(sassCompiler().on("error", sassCompiler.logError))
+    .pipe(gulpif(isProd(), autoprefixer({ grid: true })))
+    .pipe(gulpif(isProd(), postcss([sortMediaQueries()])))
+    .pipe(concat("main.css"))
+    .pipe(gulpif(isDev(), sourcemaps.write()))
+    .pipe(gulp.dest(path.dist.css));
+
+  return merge(libsStream, mainStream).pipe(server.stream());
+}
+
+function js() {
+  return gulp
+    .src(path.src.js)
+    .pipe(plumber())
+    .pipe(
+      webpackStream(
+        {
+          mode: isProd() ? "production" : "development",
+          output: { filename: "app.js" },
+        },
+        webpack
+      )
+    )
+    .pipe(gulpif(isProd(), terser()))
+    .pipe(gulp.dest(path.dist.js))
+    .pipe(server.reload({ stream: true }));
+}
+
+function image() {
+  return gulp
+    .src("src/assets/img/**/*.{jpg,jpeg,png,gif,svg}", { encoding: false })
+    .pipe(
+      plumber({
+        errorHandler: function (err) {
+          console.log("Image processing error:", err.message);
+          this.emit("end");
+        },
+      })
+    )
+    .pipe(newer("dist/assets/img"))
+    .pipe(gulp.dest("dist/assets/img"))
+    .pipe(gulp.src("src/assets/img/**/*.{jpg,jpeg,png}", { encoding: false }))
+    .pipe(
+      plumber({
+        errorHandler: function (err) {
+          console.log("WebP conversion error:", err.message);
+          this.emit("end");
+        },
+      })
+    )
+    .pipe(webp({ quality: 80 }))
+    .pipe(gulp.dest("dist/assets/img"))
+    .pipe(server.reload({ stream: true }));
+}
+
+function fonts() {
+  return gulp
+    .src("src/assets/fonts/**/*.{woff,woff2,ttf}", { encoding: false })
+    .pipe(
+      plumber({
+        errorHandler: function (err) {
+          console.log("Font processing error:", err.message);
+          this.emit("end");
+        },
+      })
+    )
+    .pipe(newer("dist/assets/fonts"))
+    .pipe(gulp.dest("dist/assets/fonts"))
+    .pipe(server.reload({ stream: true }));
+}
 function watch() {
-  gulp.watch(path.watch.html, njk);
-  gulp.watch(path.watch.style, scss);
-  gulp.watch(path.watch.script, script);
-  gulp.watch(path.watch.libs, libs);
+  gulp.watch(path.watch.html, html);
+  gulp.watch(path.watch.data, html);
+  gulp.watch(path.watch.scss, scss);
+  gulp.watch(path.watch.js, js);
   gulp.watch(path.watch.image, image);
-  gulp.watch(path.watch.font, font);
+  gulp.watch(path.watch.fonts, fonts);
 }
 
-/**
- * Default task
- */
-exports.default = gulp.series(
-  gulp.parallel(clean),
-  gulp.parallel(njk, scss, script, libs,image, font),
-  gulp.parallel(browsersync, watch)
-);
+const build = gulp.series(clean, gulp.parallel(html, scss, js, image, fonts));
+const dev = gulp.series(build, gulp.parallel(watch, serverStart));
+
+export { build, dev };
+export default dev;
