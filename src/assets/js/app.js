@@ -62,32 +62,6 @@ $(document).ready(function () {
 
 
 
-  new Swiper(".reviews__box", {
-    slidesPerView: 'auto',
-    navigation: {
-      nextEl: ".reviews__swiper-button-next",
-      prevEl: ".reviews__swiper-button-prev",
-    },
-    spaceBetween: 24,
-    // breakpoints: {
-    //   // 0: {
-    //   //   slidesPerView: 2,
-    //   // },
-    //   // 576: {
-    //   //   slidesPerView: 3,
-    //   // },
-    //   // 768: {
-    //   //   slidesPerView: 3,
-    //   // },
-    //   1344.9: {
-    //     slidesPerView: 6,
-    //   },
-    //   1920: {
-    //     slidesPerView: 6,
-    //   },
-    // },
-  });
-
 
 
   // Бургер
@@ -117,11 +91,17 @@ $(document).ready(function () {
 
   let videoBox = document.querySelectorAll('.reviews__video-box')
 
+  console.log(videoBox);
+
   videoBox.forEach(elem => {
-    let videoElem = elem.querySelector('.reviews__video')
-    dataVideo = videoElem.getAttribute('data-video')
-    dataImg = videoElem.getAttribute('data-image')
-    dataId = videoElem.getAttribute('id')
+    console.log(elem);
+
+    const videoElem = elem.querySelector('.reviews__video')
+    const dataVideo = videoElem.getAttribute('data-video')
+    const dataImg = videoElem.getAttribute('data-image')
+    const dataId = videoElem.getAttribute('id')
+
+    console.log(dataVideo, dataImg, dataId);
 
 
     new Playerjs({
@@ -137,58 +117,53 @@ $(document).ready(function () {
 
   ///map
 
-  ymaps.ready(init);
+  // ymaps.ready(init);
 
-  function init() {
-    // в этой версии координаты просто элементы массива (и они поменяны местами)
-    if (document.getElementById('map') === null) return
+  // function init() {
+  //   // в этой версии координаты просто элементы массива (и они поменяны местами)
+  //   if (document.getElementById('map') === null) return
 
-    let destinations = {
-      'OR': [52.973583, 36.096968], //орел
-      'KOM': [52.937419, 36.041649], //Магазин на Комсомольской, 270
-      'MIX': [52.993878, 36.114596], //Магазин на Михалицына, 10
-      'LOM': [52.981875, 36.069292], //Магазин на Ломоносова, 6Б
-    }
-    // let destinations = {
-    //   'OR': [53.014796, 36.15], //орел
-    // },
-
-    // Создание экземпляра карты и его привязка к контейнеру с
-    // заданным id ("map").
-    myMap = new ymaps.Map('map', {
-      // При инициализации карты обязательно нужно указать
-      // её центр и коэффициент масштабирования.
-      center: destinations['OR'], // Московское шоссе, д.173
-      zoom: 13.5
-    });
+  //   let destinations = {
+  //     'OR': [52.973583, 36.096968], //орел
+  //     'KOM': [52.937419, 36.041649], //Магазин на Комсомольской, 270
+  //     'MIX': [52.993878, 36.114596], //Магазин на Михалицына, 10
+  //     'LOM': [52.981875, 36.069292], //Магазин на Ломоносова, 6Б
+  //   }
+    
+  //   myMap = new ymaps.Map('map', {
+  //     // При инициализации карты обязательно нужно указать
+  //     // её центр и коэффициент масштабирования.
+  //     center: destinations['OR'], // Московское шоссе, д.173
+  //     zoom: 13.5
+  //   });
 
 
-    let myPlacemark = new ymaps.Placemark(destinations['KOM'], {}, {
-      //опции
-      iconLayout: 'default#image',
-      iconImageHref: '../assets/img/icon-map.svg',
-      iconImageSize: [35, 45],
-      iconImageOffset: [-20, -50],
-    });
-    let myPlacemark1 = new ymaps.Placemark(destinations['MIX'], {}, {
-      //опции
-      iconLayout: 'default#image',
-      iconImageHref: '../assets/img/icon-map.svg',
-      iconImageSize: [35, 45],
-      iconImageOffset: [-20, -50],
-    });
-    let myPlacemark2 = new ymaps.Placemark(destinations['LOM'], {}, {
-      //опции
-      iconLayout: 'default#image',
-      iconImageHref: '../assets/img/icon-map.svg',
-      iconImageSize: [35, 45],
-      iconImageOffset: [-20, -50],
-    });
-    // После того как метка была создана, добавляем её на карту.
-    myMap.geoObjects.add(myPlacemark);
-    myMap.geoObjects.add(myPlacemark1);
-    myMap.geoObjects.add(myPlacemark2);
-  }
+  //   let myPlacemark = new ymaps.Placemark(destinations['KOM'], {}, {
+  //     //опции
+  //     iconLayout: 'default#image',
+  //     iconImageHref: '/assets/img/icon-map.svg',
+  //     iconImageSize: [35, 45],
+  //     iconImageOffset: [-20, -50],
+  //   });
+  //   let myPlacemark1 = new ymaps.Placemark(destinations['MIX'], {}, {
+  //     //опции
+  //     iconLayout: 'default#image',
+  //     iconImageHref: '/assets/img/icon-map.svg',
+  //     iconImageSize: [35, 45],
+  //     iconImageOffset: [-20, -50],
+  //   });
+  //   let myPlacemark2 = new ymaps.Placemark(destinations['LOM'], {}, {
+  //     //опции
+  //     iconLayout: 'default#image',
+  //     iconImageHref: '/assets/img/icon-map.svg',
+  //     iconImageSize: [35, 45],
+  //     iconImageOffset: [-20, -50],
+  //   });
+  //   // После того как метка была создана, добавляем её на карту.
+  //   myMap.geoObjects.add(myPlacemark);
+  //   myMap.geoObjects.add(myPlacemark1);
+  //   myMap.geoObjects.add(myPlacemark2);
+  // }
 
 
   ///select
@@ -296,37 +271,6 @@ $(document).ready(function () {
     })
 
   }
-
-  window.addEventListener('scroll', function () {
-
-    SmoothScroll({
-      // Время скролла 400 = 0.4 секунды
-      animationTime: 800,
-      // Размер шага в пикселях
-      stepSize: 75,
-
-      // Дополнительные настройки:
-
-      // Ускорение
-      accelerationDelta: 30,
-      // Максимальное ускорение
-      accelerationMax: 2,
-
-      // Поддержка клавиатуры
-      keyboardSupport: true,
-      // Шаг скролла стрелками на клавиатуре в пикселях
-      arrowScroll: 50,
-
-      // Pulse (less tweakable)
-      // ratio of "tail" to "acceleration"
-      pulseAlgorithm: true,
-      pulseScale: 4,
-      pulseNormalize: 1,
-
-      // Поддержка тачпада
-      touchpadSupport: true,
-    })
-  })
 
 
 

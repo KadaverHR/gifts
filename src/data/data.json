@@ -7,18 +7,6 @@
       "desc": "Библиотека для упрощения работы с DOM, событиями и AJAX."
     },
     {
-      "title": "jQuery UI",
-      "link": "jquery-ui.js",
-      "css": "jquery-ui.css",
-      "desc": "Набор виджетов и эффектов для jQuery."
-    },
-    {
-      "title": "jQuery UI Touch Punch",
-      "link": "jquery-ui-touch.js",
-      "css": null,
-      "desc": "Добавляет поддержку тач-событий для jQuery UI на мобильных устройствах."
-    },
-    {
       "title": "Select2",
       "link": "select2.min.js",
       "css": "select2.min.css",
@@ -55,44 +43,64 @@
       "desc": "Лёгкий и гибкий слайдер без зависимостей, поддерживает любые типы контента."
     }
   ],
-
   "links": [
     {
       "title": "Натуральная фермерская продукция по всей стране",
-      "meta-desc": "Натуральная фермерская продукция по всей стране", 
-      "link": "/", 
+      "meta-desc": "Натуральная фермерская продукция по всей стране",
+      "link": "/",
       "css": "main"
-    }, 
+    },
     {
       "title": "Каталог товаров",
-      "meta-desc": "Натуральная фермерская продукция по всей стране", 
+      "meta-desc": "Натуральная фермерская продукция по всей стране",
       "link": "catalog.html",
       "css": "catalog"
     },
     {
       "title": "Продукт",
-      "meta-desc": "Натуральная фермерская продукция по всей стране", 
+      "meta-desc": "Натуральная фермерская продукция по всей стране",
       "link": "product.html",
       "css": "product"
     },
     {
       "title": "Результаты поиска",
-      "meta-desc": "Натуральная фермерская продукция по всей стране", 
+      "meta-desc": "Натуральная фермерская продукция по всей стране",
       "link": "search-result.html",
       "css": "search-result"
     },
     {
       "title": "О компании",
-      "meta-desc": "Натуральная фермерская продукция по всей стране", 
+      "meta-desc": "Натуральная фермерская продукция по всей стране",
       "link": "about.html",
-      "css": "about" 
-    }, 
+      "css": "about"
+    },
     {
       "title": "Корзина",
-      "meta-desc": "Натуральная фермерская продукция по всей стране", 
+      "meta-desc": "Натуральная фермерская продукция по всей стране",
       "link": "cart.html",
-      "css": "cart" 
+      "css": "cart"
+    }
+  ],
+  "catalog": [
+    {
+      "title": "Рыба",
+      "img": "assets/img/catalog1.png"
+    },
+    {
+      "title": "Мясо",
+      "img": "assets/img/catalog2.png"
+    },
+    {
+      "title": "Специии, соусы, масла, чай",
+      "img": "assets/img/catalog3.png"
+    },
+    {
+      "title": "Сладости",
+      "img": "assets/img/catalog4.png"
+    },
+    {
+      "title": "Сыры",
+      "img": "assets/img/catalog6.png"
     }
   ]
 }
-

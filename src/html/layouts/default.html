@@ -9,14 +9,14 @@
 
     {% for lib in jsLibs %}
       {% if lib.css %}
-        <link rel="stylesheet" href="assets/libs/{{ lib.css }}">
+        <link rel="stylesheet" href="assets/css/libs/{{ lib.css }}">
       {% endif %}
     {% endfor %}
 
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
     {% for lib in jsLibs %}
-      <script defer src="assets/libs/{{ lib.link }}"></script>
+      <script defer src="assets/js/libs/{{ lib.link }}"></script>
     {% endfor %}
     <script defer src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script defer src="assets/js/app.js"></script>
