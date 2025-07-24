@@ -1,0 +1,27 @@
+<div class="title">
+  <h2>Самые популярные</h2>
+  <div style="position: relative" class="slider-nav-box">
+    <button class="slider-nav slider-nav--prev"><</button>
+      <button class="slider-nav slider-nav--next">></button>
+  </div>
+</div>
+
+<div class="slider splide">
+  <div class="slider__track splide__track">
+    <ul class="slider__list splide__list">
+
+    {% for product in productsCards %}
+        <li class="slider__slide splide__slide">
+          {% set img = product.img %}
+          {% set alt = product.alt %}
+          {% set title = product.title %}
+          {% set oldPrice = product.oldPrice %}
+          {% set price = product.price %}
+          {% set weight = product.weight %}
+          {% set id = product.id %}
+          {% include 'includes/card.html' %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+import Splide from "@splidejs/splide";
+
 $(document).ready(function () {
 
   //год
@@ -129,7 +131,7 @@ $(document).ready(function () {
   //     'MIX': [52.993878, 36.114596], //Магазин на Михалицына, 10
   //     'LOM': [52.981875, 36.069292], //Магазин на Ломоносова, 6Б
   //   }
-    
+
   //   myMap = new ymaps.Map('map', {
   //     // При инициализации карты обязательно нужно указать
   //     // её центр и коэффициент масштабирования.
@@ -327,6 +329,22 @@ $(document).ready(function () {
     });
   })
 
+  /// новый слайдер 
 
+  const splide = new Splide('.slider', {
+    perPage: 5,
+    arrows: false,
+    pagination: false,
+  });
+
+  splide.mount();
+
+  document.querySelector('.slider-nav--prev').addEventListener('click', function () {
+    splide.go('<');
+  });
+
+  document.querySelector('.slider-nav--next').addEventListener('click', function () {
+    splide.go('>');
+  });
 
 })

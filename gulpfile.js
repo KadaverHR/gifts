@@ -22,6 +22,7 @@ import data from "gulp-data";
 import concat from "gulp-concat";
 import merge from "merge-stream";
 import fs from "fs";
+import through2 from "through2";
 
 const sassCompiler = sass(dartSass);
 const server = browserSync.create();
@@ -122,6 +123,22 @@ function html(done) {
     .pipe(
       nunjucksRender({
         path: ["src/html"],
+        manageEnv: function (environment) {
+          // Фильтр для создания picture с поддержкой alt
+          environment.addFilter('picture', function (src, alt = '', classes = '', otherAttrs = '') {
+            if (!src) return '';
+
+            const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+            const altAttr = alt ? `alt="${alt}"` : '';
+            const classAttr = classes ? `class="${classes}"` : '';
+            const attrs = [altAttr, classAttr, otherAttrs].filter(Boolean).join(' ');
+
+            return `<picture>
+  <source srcset="${webpSrc}" type="image/webp">
+  <img src="${src}" ${attrs}>
+</picture>`;
+          });
+        }
       }).on("error", function (err) {
         console.log("Nunjucks error:", err.message);
         this.emit("end");
@@ -131,7 +148,6 @@ function html(done) {
     .pipe(server.reload({ stream: true }))
     .on("end", done);
 }
-
 
 function copyVideos() {
   return gulp
@@ -217,8 +233,9 @@ function libs(done) {
     .on("end", done);
 }
 
+// Функция для обработки изображений и создания WebP
 function image(done) {
-  return gulp
+  const imageStream = gulp
     .src(path.src.image, { encoding: false, allowEmpty: true })
     .pipe(
       plumber({
@@ -229,8 +246,10 @@ function image(done) {
       })
     )
     .pipe(newer(path.dist.image))
-    .pipe(gulp.dest(path.dist.image))
-    .pipe(gulp.src("src/assets/img/**/*.{jpg,jpeg,png}", { encoding: false, allowEmpty: true }))
+    .pipe(gulp.dest(path.dist.image));
+
+  const webpStream = gulp
+    .src("src/assets/img/**/*.{jpg,jpeg,png}", { encoding: false, allowEmpty: true })
     .pipe(
       plumber({
         errorHandler: function (err) {
@@ -240,9 +259,48 @@ function image(done) {
       })
     )
     .pipe(webp({ quality: 80 }))
-    .pipe(gulp.dest(path.dist.image))
+    .pipe(gulp.dest(path.dist.image));
+
+  return merge(imageStream, webpStream)
     .pipe(server.reload({ stream: true }))
     .on("end", done);
+}
+
+// Функция для оборачивания img в picture (обрабатывает уже собранные HTML файлы)
+function wrapImagesInPicture() {
+  return gulp
+    .src(path.dist.html + "**/*.html")
+    .pipe(
+      through2.obj(function (file, enc, cb) {
+        if (file.isBuffer()) {
+          let content = file.contents.toString();
+
+          // Регулярное выражение для поиска тегов img с src
+          content = content.replace(/<img([^>]*?)src=["']([^"']*?\.(jpg|jpeg|png))["']([^>]*?)>/g, (match, beforeSrc, src, ext, afterSrc) => {
+            // Проверяем, не находится ли img уже внутри picture
+            if (match.includes('data-no-picture')) {
+              // Удаляем атрибут-маркер и возвращаем оригинальный img
+              return match.replace('data-no-picture', '').replace(/\s+$/, '');
+            }
+
+            // Генерируем путь к WebP версии
+            const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+
+            // Создаем picture элемент
+            return `
+<picture>
+  <source srcset="${webpSrc}" type="image/webp">
+  <img${beforeSrc}src="${src}"${afterSrc}>
+</picture>`;
+          });
+
+          file.contents = Buffer.from(content);
+        }
+        cb(null, file);
+      })
+    )
+    .pipe(gulp.dest(path.dist.html))
+    .pipe(server.stream()); // Используем stream вместо reload для плавного обновления
 }
 
 function fonts(done) {
@@ -262,19 +320,30 @@ function fonts(done) {
     .on("end", done);
 }
 
+function htmlAndPicture(done) {
+  return html(done);
+}
+
+
+
 function watch() {
-  gulp.watch(path.watch.html, html);
-  gulp.watch(path.watch.data, html);
+  gulp.watch(path.watch.html, htmlAndPicture);
+  gulp.watch(path.watch.data, htmlAndPicture);
   gulp.watch(path.watch.scss, scss);
   gulp.watch(path.watch.js, js);
   gulp.watch(path.watch.libs, libs);
   gulp.watch(path.watch.image, image);
   gulp.watch(path.watch.fonts, fonts);
   gulp.watch(path.watch.video, copyVideos);
-}
 
-const build = gulp.series(clean, gulp.parallel(html, scss, js, libs, image, fonts, copyCssLibs, copyVideos));
+  // Дополнительный watcher для немедленного обновления picture при изменении HTML
+  gulp.watch(path.dist.html + "**/*.html", { delay: 100 }, wrapImagesInPicture);
+}
+const build = gulp.series(
+  clean,
+  gulp.parallel(html, scss, js, libs, image, fonts, copyCssLibs, copyVideos)
+);
 const dev = gulp.series(build, gulp.parallel(watch, serverStart));
 
-export { build, dev };
+export { build, dev, htmlAndPicture, wrapImagesInPicture };
 export default dev;
