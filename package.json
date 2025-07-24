@@ -47,6 +47,7 @@
     "jQuery": "^1.7.4",
     "just-validate": "^4.3.0",
     "micromodal": "^0.6.1",
+    "pump": "^3.0.3",
     "select2": "^4.1.0-rc.0",
     "tempfile": "^5.0.0"
   },

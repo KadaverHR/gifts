@@ -1,13 +1,14 @@
 <div class="card">
-  <a href="#" class="card-link">
+  <a href="#" class="card__link">
 
     {% if not img %}
-      {{ 'assets/img/no-image.jpg' | picture( "Изображение на товар отсуствует", 'card__img') | safe }}
+    {{ 'assets/img/no-image.jpg' | picture( "Изображение на товар отсуствует", 'card__img') | safe }}
     {% else %}
-      {{ img | picture(alt, 'card__img') | safe }}
+    {{ img | picture(alt, 'card__img') | safe }}
     {% endif %}
 
-    {% if oldPrice %}
+    <div class="card__content">
+      {% if oldPrice %}
       <div class="card__price-box">
         <p class="card__price card__price--new">
           {{price}}
@@ -16,32 +17,36 @@
           {{oldPrice}}
         </p>
       </div>
-    {% else %}
+      {% else %}
+
       <div class="card__price-box">
         <p class="card__price">
           {{price}}
         </p>
       </div>
-    {% endif %}
-    <p class="card__title">
-      {{title}}
-    </p>
-    <p class="card__weight">
-      {{weight}}
-    </p>
+      {% endif %}
+      <p class="card__title">
+        {{title}}
+      </p>
+      <p class="card__weight">
+        {{weight}}
+      </p>
+    </div>
   </a>
-  <button data-count id='product-{{id}}' class="card__button">
-    В корзину
-  </button>
-  <div class="card__button-count">
-    <button type="submit" class="card__button-count-minus">
-      -
+  <div class="card__button-box">
+    <button data-count id='product-{{id}}' class="card__button">
+      В корзину
     </button>
-    <p class="card__button-count-text">
-      1
-    </p>
-    <button type="submit" class="card__button-count-plus">
-      +
-    </button>
+    <div class="card__button-count d-n">
+      <button type="submit" class="card__button-cart card__button-count--minus">
+        -
+      </button>
+      <p class="card__button-count-text">
+        1
+      </p>
+      <button type="submit" class="card__button-cart card__button-count--plus">
+        +
+      </button>
+    </div>
   </div>
 </div>
