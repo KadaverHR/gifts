@@ -1,0 +1,141 @@
+{% set title = "Натуральная фермерская " %}
+{% set bodyClass = "is-main" %}
+
+{% extends "layouts/default.html" %}
+
+{% block content %}
+
+  <main class="catalog-page">
+    <div class="container">
+      <section class="page-intro">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumbs">
+            <li>
+              <a href="#">Главная</a>
+            </li>
+            <li><img src="" alt=""></li>
+            <li>
+              <a href="#">Каталог</a>
+            </li>
+            <li><img src="" alt=""></li>
+            <li>
+              <a href="#">Рыба</a>
+            </li>
+            <li><img src="" alt=""></li>
+            <li aria-current="page">Икра, консервы</li>
+          </ol>
+        </nav>
+        <h1 class="page-title">Икра, консервы</h1>
+      </section>
+
+      <div class="catalog-layout">
+        <aside class="catalog-sidebar">
+          <div class="sidebar-block">
+            <h2 class="sidebar-title">Категории</h2>
+            <nav class="category-nav">
+              <ul class="category-nav__list">
+                {% for category in categoryNav %}
+                  <li class="category-nav__item">
+                    <button class="category-nav__btn">
+                      <p class="category-nav__title">
+                        {{ category.categoryTitle }}
+                      </p>
+                      <img class="svg category-nav__arrow-btn" src="assets/img/all-btn.svg" alt="">
+                    </button>
+                    <ul class="category-nav__subcategory-list">
+                      {% for subcategory in category.subcategory %}
+                        <li class="category-nav__subcategory-item">
+                          <a href="#" class="category-nav__subcategory-link">
+                            {{ subcategory }}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% endfor %}
+              </ul>
+            </nav>
+          </div>
+          <div class="sidebar-block">
+            <h2 class="sidebar-title">Фильтры</h2>
+            <div class="filter-group">
+              <h3 class="filter-label">Цена</h3>
+              <div class="price-filter">
+                <div class="price-input-wrapper">
+                  <span>от</span>
+                  <input type="text" value="832">
+                </div>
+                <div class="price-input-wrapper">
+                  <span>до</span>
+                  <input type="text" value="100 586">
+                </div>
+              </div>
+            </div>
+            <div class="filter-group discount-filter">
+              <label for="discount-toggle" class="filter-label">Только со скидкой</label>
+              <div class="toggle-switch">
+                <input type="checkbox" id="discount-toggle" class="toggle-switch__checkbox">
+                <label for="discount-toggle" class="toggle-switch__label"></label>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <section class="products-area">
+          <div class="products-toolbar">
+            <button class="sort-button">
+              <img src="" alt="">
+              <span>По популярности</span>
+            </button>
+            <span class="product-count">49 товаров</span>
+          </div>
+
+          <ul class="products-grid">
+            {% for product in productsCards %}
+              <li class="product-card">
+                {% set img = product.img %}
+                {% set alt = product.alt %}
+                {% set title = product.title %}
+                {% set oldPrice = product.oldPrice %}
+                {% set price = product.price %}
+                {% set weight = product.weight %}
+                {% set id = product.id %}
+                {% include 'includes/card.html' %}
+              </li>
+            {% endfor %}
+          </div>
+
+          <div class="pagination-controls">
+            <button class="show-more-button">Показать еще</button>
+            <nav aria-label="Pagination">
+              <ul class="pagination">
+                <li>
+                  <a href="#" class="page-link active">1</a>
+                </li>
+                <li>
+                  <a href="#" class="page-link">2</a>
+                </li>
+                <li>
+                  <a href="#" class="page-link">3</a>
+                </li>
+                <li>
+                  <a href="#" class="page-link">4</a>
+                </li>
+                <li>
+                  <span class="page-link ellipsis">...</span></li>
+                <li>
+                  <a href="#" class="page-link">12</a>
+                </li>
+                <li>
+                  <a href="#" class="page-link"><img
+                src="" alt="Next Page"></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

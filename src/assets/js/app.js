@@ -60,12 +60,6 @@ $(document).ready(function () {
 
 
 
-  //слайдер баннер 
-
-
-
-
-
   // Бургер
   let burger = document.querySelector('.burger');
   let menu = document.querySelector('.header__list-mobile');
@@ -93,7 +87,6 @@ $(document).ready(function () {
 
   let videoBox = document.querySelectorAll('.reviews__video-box')
 
-  console.log(videoBox);
 
   videoBox.forEach(elem => {
     console.log(elem);
@@ -278,41 +271,45 @@ $(document).ready(function () {
 
   ////валидация
 
-  const validation = new JustValidate('#form', {
-    errorFieldCssClass: 'is-invalid',
-    errorLabelStyle: {
-      fontSize: '12px',
-      color: '#F65252',
-    },
-    focusInvalidField: true,
-    lockForm: true,
-  });
-  validation
-    .addField('#name_input', [
-      {
-        rule: 'required',
-        errorMessage: 'Вы не ввели имя',
-
+  if (document.querySelector('#form')) {
+    const validation = new JustValidate('#form', {
+      errorFieldCssClass: 'is-invalid',
+      errorLabelStyle: {
+        fontSize: '12px',
+        color: '#F65252',
       },
-      {
-        rule: 'minLength',
-        value: 3,
-        errorMessage: 'Слишком короткое имя',
-      },
-      {
-        rule: 'maxLength',
-        value: 30,
-        errorMessage: 'Слишком длинное имя',
-      }
-    ])
+      focusInvalidField: true,
+      lockForm: true,
+    });
+    validation
+      .addField('#name_input', [
+        {
+          rule: 'required',
+          errorMessage: 'Вы не ввели имя',
 
-    .addField('#tel_input', [
-      {
-        rule: 'required',
-        errorMessage: 'Вы не ввели телефон',
-      },
+        },
+        {
+          rule: 'minLength',
+          value: 3,
+          errorMessage: 'Слишком короткое имя',
+        },
+        {
+          rule: 'maxLength',
+          value: 30,
+          errorMessage: 'Слишком длинное имя',
+        }
+      ])
 
-    ])
+      .addField('#tel_input', [
+        {
+          rule: 'required',
+          errorMessage: 'Вы не ввели телефон',
+        },
+
+      ])
+
+
+  }
 
 
 
@@ -321,30 +318,53 @@ $(document).ready(function () {
   let allBtn = document.querySelector('.catalog__all-btn')
   let allCatalog = document.querySelectorAll('.catalog__item--hidden')
 
+  if (allBtn) {
+    allBtn.addEventListener('click', () => {
+      allBtn.classList.add('d-n')
+      allCatalog.forEach(element => {
+        element.classList.toggle('hidden')
+      });
+    })
 
-  allBtn.addEventListener('click', () => {
-    allBtn.classList.add('d-n')
-    allCatalog.forEach(element => {
-      element.classList.toggle('hidden')
-    });
-  })
+  }
 
   /// новый слайдер 
 
-  const splide = new Splide('.slider', {
-    perPage: 5,
-    arrows: false,
-    pagination: false,
-  });
 
-  splide.mount();
+  if (document.querySelector('.slider')) {
+    const splide = new Splide('.slider', {
+      perPage: 5,
+      arrows: false,
+      pagination: false,
+    });
 
-  document.querySelector('.slider-nav--prev').addEventListener('click', function () {
-    splide.go('<');
-  });
+    splide.mount();
 
-  document.querySelector('.slider-nav--next').addEventListener('click', function () {
-    splide.go('>');
-  });
+    document.querySelector('.slider-nav--prev').addEventListener('click', function () {
+      splide.go('<');
+    });
+
+    document.querySelector('.slider-nav--next').addEventListener('click', function () {
+      splide.go('>');
+    });
+  }
+
+
+  /// открытие категорий 
+
+  const catalogNavBtn = document.querySelectorAll('.category-nav__btn')
+  if (catalogNavBtn) {
+    catalogNavBtn.forEach(el => {
+      el.addEventListener('click', () => {
+
+        const catalogNavItem = el.closest('.category-nav__item')
+        catalogNavItem.classList.toggle('active')
+
+      })
+    })
+  }
+
+
+
 
 })

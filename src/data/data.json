@@ -184,5 +184,49 @@
       "price": "1 150 ₽",
       "weight": "100 г"
     }
+  ],
+  "categoryNav": [
+    {
+      "categoryTitle": "Рыба",
+      "subcategory": [
+        "Икра, консервы",
+        "Рыба Астрахань",
+        "Рыба Камчатка"
+      ],
+      "active": true  
+    },
+    {
+      "categoryTitle": "Мясо",
+      "subcategory": [
+        "Колбасы",
+        "Соусы",
+        "Мясо"
+      ]
+    },
+    {
+      "categoryTitle": "Специи, соусы, масла, чай",
+      "subcategory": [
+        "Cпеции",
+        "Соусы",
+        "Масла",
+        "Чай"
+      ]
+    },
+    {
+      "categoryTitle": "Сладости",
+      "subcategory": [
+        "Конфеты",
+        "Шоколад",
+        "Сладости"
+      ]
+    },
+    {
+      "categoryTitle": "Сыры",
+      "subcategory": [
+        "Сыры",
+        "Сыры",
+        "Сыры"
+      ]
+    }
   ]
 }
