@@ -1,10 +1,11 @@
 <div class="card">
   <a href="#" class="card__link">
-
     {% if not img %}
-    {{ 'assets/img/no-image.jpg' | picture( "Изображение на товар отсуствует", 'card__img') | safe }}
+    {{ 'assets/img/no-image.jpg' | picture( "Изображение на товар отсуствует", 'card__img no-img') | safe }}
     {% else %}
-    {{ img | picture(alt, 'card__img') | safe }}
+    <div class="card__img-box">
+      {{ img | picture(alt, 'card__img') | safe }}
+    </div>
     {% endif %}
 
     <div class="card__content">
@@ -37,7 +38,7 @@
     <button data-count id='product-{{id}}' class="card__button">
       В корзину
     </button>
-    <div class="card__button-count d-n">
+    <div class="card__button-count is-hidden">
       <button type="submit" class="card__button-cart card__button-count--minus">
         -
       </button>
