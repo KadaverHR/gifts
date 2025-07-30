@@ -1,0 +1,230 @@
+{% set title = "Натуральная фермерская " %}
+{% set bodyClass = "is-main" %}
+
+{% extends "layouts/default.html" %}
+
+{% block content %}
+
+<main id="cart" class="cart-section">
+  <div class="container">
+    <div class="cart-header">
+      <h1>Корзина</h1>
+      <p class="item-count">3 товара</p>
+    </div>
+    <div class="cart-layout">
+      <div class="cart-items-column">
+        <div class="cart-controls">
+          <label class="checkbox-control">
+            <!--merged image-->
+            <div class="checkbox-visual">
+              <div class="checkbox-bg"></div>
+              <img src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19890_2552_19603_48_7023.svg"
+                alt="checked" class="checkbox-tick">
+            </div>
+            <span>Выбрать все</span>
+          </label>
+          <button class="delete-selected-btn">Удалить выбранное</button>
+        </div>
+        <hr class="cart-divider">
+        <div class="cart-items-list">
+          <article class="cart-item">
+            <label class="checkbox-control item-checkbox">
+              <!--merged image-->
+              <div class="checkbox-visual">
+                <div class="checkbox-bg"></div>
+                <img
+                  src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19790_2554_19715_2552_19603_48_7023.svg"
+                  alt="checked" class="checkbox-tick">
+              </div>
+            </label>
+            <img class="item-image"
+              src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/ed192ec06f1d24c5c1c8aff1c57525cc989efe15.png"
+              alt="Икра лососевая">
+            <div class="item-details">
+              <p class="item-name">Икра лососевая тихоокеанская зернистая соленая</p>
+              <p class="item-weight">230 г</p>
+              <p class="item-sku">Арт: 1254612021</p>
+            </div>
+            <div class="item-quantity-stepper">
+              <button><img
+                  src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19790_2554_19704_2552_19638_48_6951.svg"
+                  alt="Decrease"></button>
+              <span>1</span>
+              <button><img
+                  src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19790_2554_19704_2552_19640_48_7031.svg"
+                  alt="Increase"></button>
+            </div>
+            <p class="item-price">3 100 ₽</p>
+            <button class="item-delete-btn"><img
+                src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19790_2552_19691_48_6759.svg"
+                alt="Delete"></button>
+          </article>
+          <article class="cart-item">
+            <label class="checkbox-control item-checkbox">
+              <!--merged image-->
+              <div class="checkbox-visual">
+                <div class="checkbox-bg"></div>
+                <img
+                  src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19824_2554_19715_2552_19603_48_7023.svg"
+                  alt="checked" class="checkbox-tick">
+              </div>
+            </label>
+            <img class="item-image"
+              src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/ed192ec06f1d24c5c1c8aff1c57525cc989efe15.png"
+              alt="Икра лососевая">
+            <div class="item-details">
+              <p class="item-name">Икра лососевая тихоокеанская зернистая соленая</p>
+              <p class="item-weight">230 г</p>
+              <p class="item-sku">Арт: 1254612021</p>
+            </div>
+            <div class="item-quantity-stepper">
+              <button><img
+                  src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19824_2554_19704_2552_19638_48_6951.svg"
+                  alt="Decrease"></button>
+              <span>1</span>
+              <button><img
+                  src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19824_2554_19704_2552_19640_48_7031.svg"
+                  alt="Increase"></button>
+            </div>
+            <p class="item-price">3 100 ₽</p>
+            <button class="item-delete-btn"><img
+                src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19824_2552_19691_48_6759.svg"
+                alt="Delete"></button>
+          </article>
+          <article class="cart-item">
+            <label class="checkbox-control item-checkbox">
+              <!--merged image-->
+              <div class="checkbox-visual">
+                <div class="checkbox-bg"></div>
+                <img
+                  src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19857_2554_19715_2552_19603_48_7023.svg"
+                  alt="checked" class="checkbox-tick">
+              </div>
+            </label>
+            <img class="item-image"
+              src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/ed192ec06f1d24c5c1c8aff1c57525cc989efe15.png"
+              alt="Икра лососевая">
+            <div class="item-details">
+              <p class="item-name">Икра лососевая тихоокеанская зернистая соленая</p>
+              <p class="item-weight">230 г</p>
+              <p class="item-sku">Арт: 1254612021</p>
+            </div>
+            <div class="item-quantity-stepper">
+              <button><img
+                  src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19857_2554_19704_2552_19638_48_6951.svg"
+                  alt="Decrease"></button>
+              <span>1</span>
+              <button><img
+                  src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19857_2554_19704_2552_19640_48_7031.svg"
+                  alt="Increase"></button>
+            </div>
+            <p class="item-price">3 100 ₽</p>
+            <button class="item-delete-btn"><img
+                src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2554_19857_2552_19691_48_6759.svg"
+                alt="Delete"></button>
+          </article>
+        </div>
+      </div>
+      <aside class="cart-summary-column">
+        <div class="summary-box promo-box">
+          <h3 class="promo-title">Промокод</h3>
+          <div class="promo-input">
+            <img src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2337_3712_48_3503.svg" alt="Promo icon"
+              width="24" height="24">
+            <input type="text" placeholder="Введите промокод">
+          </div>
+        </div>
+        <div class="summary-box order-summary-box">
+          <div class="summary-row">
+            <span>Товары (3)</span>
+            <span>5 940 ₽</span>
+          </div>
+          <div class="summary-row total-row">
+            <strong>Итого</strong>
+            <strong>5 940 ₽</strong>
+          </div>
+          <button class="btn checkout-btn">К способам получения</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+<section id="related-products" class="related-products-section">
+  <div class="container">
+    <div class="related-products-header">
+      <h2>Сопутствующие товары</h2>
+      <div class="slider-nav">
+        <button><img src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2364_9763_48_6819.svg"
+            alt="Previous"></button>
+        <button><img src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/I2364_9765_48_6799.svg" alt="Next"></button>
+      </div>
+    </div>
+    <div class="products-slider">
+      <div class="products-row">
+        <article class="product-card">
+          <a href="#" class="product-image-link">
+            <img src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/e0f8706d559be254b75653a61dbc192568e9d481.png"
+              alt="Икра ястычная сельди вяленая">
+          </a>
+          <div class="product-info">
+            <p class="product-price">1 150 ₽</p>
+            <h3 class="product-name">Икра ястычная сельди вяленая</h3>
+            <p class="product-weight">100 г</p>
+            <button class="btn add-to-cart-btn">В корзину</button>
+          </div>
+        </article>
+        <article class="product-card">
+          <a href="#" class="product-image-link">
+            <img src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/322f2c1aaa41500c4faa01cdef233849bb9ec0a2.png"
+              alt="Икра лососевая горбуши замороженная">
+          </a>
+          <div class="product-info">
+            <p class="product-price">2 985 ₽</p>
+            <h3 class="product-name">Икра лососевая горбуши замороженная</h3>
+            <p class="product-weight">200 г</p>
+            <button class="btn add-to-cart-btn">В корзину</button>
+          </div>
+        </article>
+        <article class="product-card">
+          <a href="#" class="product-image-link">
+            <img src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/ed192ec06f1d24c5c1c8aff1c57525cc989efe15.png"
+              alt="Икра лососевая тихоокеанская зернистая соленая">
+          </a>
+          <div class="product-info">
+            <p class="product-price">3 100 ₽</p>
+            <h3 class="product-name">Икра лососевая тихоокеанская зернистая соленая</h3>
+            <p class="product-weight">230 г</p>
+            <button class="btn add-to-cart-btn">В корзину</button>
+          </div>
+        </article>
+        <article class="product-card">
+          <a href="#" class="product-image-link">
+            <img src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/3857bd6af89ccd6499b16cd945407d01079e8fe7.png"
+              alt="Икра горбуши лососевая">
+          </a>
+          <div class="product-info">
+            <p class="product-price">10 555 ₽</p>
+            <h3 class="product-name">Икра горбуши лососевая</h3>
+            <p class="product-weight">1 000 г</p>
+            <button class="btn add-to-cart-btn">В корзину</button>
+          </div>
+        </article>
+        <article class="product-card">
+          <a href="#" class="product-image-link">
+            <img src="/page/7bea4a94-98f8-4c0a-9dbd-b9da9faa5f24/images/e0f8706d559be254b75653a61dbc192568e9d481.png"
+              alt="Икра ястычная сельди вяленая">
+          </a>
+          <div class="product-info">
+            <p class="product-price">1 150 ₽</p>
+            <h3 class="product-name">Икра ястычная сельди вяленая</h3>
+            <p class="product-weight">100 г</p>
+            <button class="btn add-to-cart-btn">В корзину</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
